@@ -1,0 +1,370 @@
+.font-face {
+    font-family: 'Inter', sans-serif;
+}
+
+.post {
+    display: grid;
+    grid-template-columns: minmax(0.6rem, 1fr)
+                           minmax(0.6rem, 1fr)
+                           10px
+                           minmax(auto, 57ch)
+                           10px
+                           minmax(0.6rem, 1fr)
+                           minmax(0.6rem, 1fr);
+}
+
+.post {
+    display: grid;
+    grid-template-columns: minmax(0.6rem, 1fr)
+                           minmax(0.6rem, 1fr)
+                           10px
+                           minmax(57ch, 90ch)
+                           10px
+                           minmax(0.6rem, 1fr)
+                           minmax(0.6rem, 1fr);
+}
+
+
+.post * {
+    grid-column: 4;
+}
+
+.post figure {
+    grid-column: 1 / -1;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.post innerfig {
+    grid-column: 4 / span 1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.post aside {
+    grid-column: 5 / -1;
+}
+
+.post blockquote {
+    grid-column: 3 / span 2;
+    font-family: 'Inter', sans-serif;
+    margin: 0px 0;
+    color: #666;
+    background-color:rgb(255,231,231);
+    border-left: 3px solid black;
+    padding-left: 10px;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    clear: both;
+  }
+  a {
+      font-family: 'Inter';
+      color: inherit;
+      text-decoration: inherit;
+  }
+  nav {
+    background: #fff;
+    height: 80px;
+    line-height: 80px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9998;
+    transition: all 0.5s;
+  }
+  nav.scrollUp {
+    transform: translateY(-80px);
+  }
+  nav ul.navbar-menu {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+  }
+  nav ul.navbar-menu li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  nav ul.navbar-menu li a {
+    color: #666;
+    font-size: 14px;
+  }
+  nav a#brand {
+    text-transform: uppercase;
+    float: left;
+    font-weight: 800;
+    font-size: 20px;
+  }
+  nav button {
+    background: none;
+    width: 30px;
+    height: 40px;
+    margin-top: 20px;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    display: none;
+  }
+  nav button span {
+    width: 30px;
+    height: 40px;
+    height: 2px;
+    background: #333;
+    display: block;
+    margin: 5px 0;
+  }
+  
+  @media (max-width: 768px) {
+    nav ul.navbar-menu {
+      display: none;
+    }
+  
+    nav button {
+      display: block;
+    }
+  }
+  .footer {
+    grid-column: 1 / span 7;
+	padding: 9rem 0;
+	margin: 0 auto;
+	color: white;
+	position: relative;
+    width: 100%;
+    font-family: 'Inter', 'sans-serif';
+    font-weight: 300;
+  }
+.footer #particles2 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	background: linear-gradient(-45deg, #000000, #000000, #030006);
+	background-size: 400% 400%;
+	animation: gradient 20s ease infinite;
+}
+
+.footer .inner {
+
+	margin: 0 auto;
+	padding: 0 6rem;
+	position: relative;
+	z-index: 150;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: end;
+	justify-content: flex-end;
+	pointer-events: none
+}
+
+@media (max-width: 1100px) {
+	.footer .inner {
+		-ms-flex-pack: start;
+		justify-content: flex-start
+	}
+}
+
+@media (max-width: 700px) {
+    .footer {
+        padding: 9rem 0;
+    }
+	.footer .inner {
+		padding: 0 3rem
+	}
+}
+
+@media (max-width: 1100px) {
+	.footer .content {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		-ms-flex: 1 1 100%;
+		flex: 1 1 100%;
+		padding: 0
+	}
+}
+
+.footer small {
+	display: block;
+	width: 100%;
+	-webkit-font-smoothing: antialiased
+}
+
+.footer small:last-of-type {
+	font-size: 1.2rem;
+	color: rgb(255, 255, 255);
+	margin-top: 4rem
+}
+
+.footer small a {
+	color: currentColor;
+	pointer-events: all;
+	-webkit-font-smoothing: antialiased
+}
+
+.footer img {
+    max-width:min-content;
+	width: 40%;
+  }
+
+  @keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.font-face {
+  font-family: 'Inter', sans-serif;
+}
+
+.post * {
+  min-width: 0;
+}
+
+.post h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 50px;
+}
+
+.post h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 35px;
+}
+
+.post p {    
+  --x-height-multiplier: 0.375;
+  --baseline-multiplier: 0.17;
+  font-family: Inter;
+  letter-spacing: .01rem;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 21px;
+  line-height: 1.58;
+  letter-spacing: -.003em;
+  color: rgba(0,0,0,.84);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.post ul {
+  display: inline-block;
+  margin: 0;
+  --x-height-multiplier: 0.375;
+  --baseline-multiplier: 0.17;
+  font-family: 'Inter';
+  letter-spacing: .01rem;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 21px;
+  line-height: 1.58;
+  letter-spacing: -.003em;
+  color: rgba(0,0,0,.84);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.post ol {
+  display: inline-block;
+  margin: 0;
+  --x-height-multiplier: 0.375;
+  --baseline-multiplier: 0.17;
+  font-family: 'Inter';
+  letter-spacing: .01rem;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 21px;
+  line-height: 1.58;
+  letter-spacing: -.003em;
+  color: rgba(0,0,0,.84);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.post aside {
+  font-family: Lucida Grande;
+  margin: 30px 20px;
+  color: #666;
+  font-size: 0.8em;
+}
+
+img {
+  width: 100%;
+}
+
+video {
+  width: 60%;
+}
+
+.innerimg {
+  width: 60%;
+  justify-content: center;
+}
+
+.innervideo {
+  width: 60%;
+  justify-content: center;
+}
+
+.line-numbers a {
+  text-decoration: none;
+  color: #000;
+  padding-right: 1em;
+}
+
+code {
+  background: #eee;
+  padding: 2px 5px;
+}
+
+pre {
+  background: #eee;
+  padding: 10px 15px;
+  overflow: auto;
+}
+
+pre > code {
+  padding: 0;
+}
+
+figure {
+  margin: 0;
+}
+
+figure figcaption {
+  color: #666;
+  font-style: italic;
+  font-size: 0.8em;
+}
+
+.innerfig {
+  margin: 0;
+}
+
+.innerfig figcaption {
+  color: #666;
+  font-style: italic;
+  font-size: 1em;
+  font-family:'Inter';
+}
+
+.chartjs-wrapper {
+  grid-column: 4;
+}

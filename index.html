@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <title>Saurab Sirpurkar</title>
+    <link rel="apple-touch-icon" href="/assets/favicons/ss.png" sizes="180x180">
+    <link rel="icon"             href="/assets/favicons/ss.png"    sizes="32x32" type="image/png">
+    <link rel="icon"             href="/assets/favicons/ss.png"    sizes="16x16" type="image/png">
+    <link rel="mask-icon"        href="/assets/favicons/ss.svg" color="#23372d">
+    <link rel="shortcut icon"    href="/assets/favicons/ss.ico">
+	<link href="/assets/css/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script>
+		function goToByScroll(id) {
+		$('html,body').animate({scrollTop: $("#"+id).offset().top},'slow');
+		}
+		function showcreds(){
+			console.log("hi")
+			var coll = document.getElementsByClassName("contenta");
+			if (coll[0].style.display === "block") {
+				coll[0].style.display = "none";
+			} else {
+				coll[0].style.display = "block";
+			}
+		}
+	</script>		
+
+   <style>
+
+	.collapsible {
+		background-color: #eee;
+		color: #444;
+		cursor: pointer;
+		padding: 18px;
+		width: 100%;
+		border: none;
+		text-align: left;
+		outline: none;
+		font-size: 15px;
+	  }
+	  
+	  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+	  .active, .collapsible:hover {
+		background-color: #ccc;
+	  }
+	  
+	  /* Style the collapsible content. Note: hidden by default */
+	  .contenta {
+		padding: 0 18px;
+		display: none;
+		overflow: hidden;
+		background-color: #f1f1f1;
+	  }
+
+
+	  .img {
+		  vertical-align: bottom;
+	  }
+		
+   </style>
+   <script>
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+
+		for (i = 0; i < coll.length; i++) {
+		coll[i].addEventListener("click", function() {s
+			this.classList.toggle("active");
+			var contenta = this.nextElementSibling;
+			if (contenta.style.display === "block") {
+			contenta.style.display = "none";
+			} else {
+			contenta.style.display = "block";
+			}
+			console.log("successfully executed");
+		});
+		}
+	</script>
+</head>
+
+<body>
+	<section class="landing">
+		<div id="particles">
+            <div class="heading" onselectstart="return false">
+                <h2 style="color: white" onselectstart="return false" style="margin-bottom:50px">Saurab Sirpurkar</h2>
+                <h6 onselectstart="return false">
+                    <a class="button" onclick="goToByScroll('bio')" onselectstart="return false">
+                        <span style="font-weight:600">ABOUT ME</span>
+                    </a>
+                </h6>
+                <h4>
+                    <p onselectstart="return false" style="padding-left: 4vh;">
+                        <a href="https://www.linkedin.com/in/saurab-s7/" target = "_blank">
+                            <img src="/assets/icons/linkedin.svg" class="avatar">
+                        </a>
+                        <a href="https://github.com/ssaurab" target = "_blank">
+                            <img src="assets/icons/github.svg" class="avatarmid">
+                        </a>
+                    </p>              
+                </h4>
+            </div>
+		</div>
+	</section>
+	<section class="cards">
+			<style selector="cards-container">
+			.css-cards-container {
+				position: relative;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-flex-direction: row;
+				-ms-flex-direction: row;
+				flex-direction: row;
+			}
+			</style>
+			<div class="css-cards-container e1qsw1o60">
+				<style selector="cards-inner">
+				.css-cards-inner {
+					display: -webkit-box;
+					display: -webkit-flex;
+					display: -ms-flexbox;
+					display: flex;
+					-webkit-flex-direction: column;
+					-ms-flex-direction: column;
+					flex-direction: column;
+					max-width: 900px;
+					padding: 0 80px;
+					margin: 0 auto;
+					width: 100%;
+					min-height: 100vh;
+				}
+
+				@media screen and (max-width:850px) {
+					.css-cards-inner {
+						padding: 0 40px;
+					}
+				}
+				</style>
+				<div class="css-cards-inner e1qsw1o64" id="bio">
+					<main style="flex:1">
+						<style yep>
+							.biosize {
+								font-size: var(--font-size-1);
+							}
+							@media (max-width:700px) {
+								.biosize {
+									font-size: 2em;
+								}
+							}
+						</style>
+						<h1 class="biosize" style="margin-top:1em">I'm Saurab. <br />I am a software engineer, competitive programmer and a traveler.</h1>
+						<style scoped>
+							.on-the-fly {
+								font-size: var(--font-size-4);
+							}
+							@media (max-width:700px) {
+								.on-the-fly {
+									font-size: var(--font-size-5);
+								}
+							}
+						</style>
+						<p class="on-the-fly">I study computer science as a master's student at <span style="font-weight:600">Georgia Tech</span> after graduating from Indian Institue of Technology Madras. I love building <span style="font-weight:600">scalable infrastructure</span> for prodcuts used by millions of users. I worked at Adobe last year building their quicker cloud sharing architecture for
+
+							<style selector="1o8hbsc">
+								.css-1o8hbsc {
+									-webkit-transition: all 0.15s ease-out;
+									transition: all 0.15s ease-out;
+									cursor: pointer;
+									-webkit-text-decoration: none;
+									text-decoration: none;
+									outline: none;
+									color: var(--textNormal);
+									font-weight: 500;
+								}
+	
+								.css-1o8hbsc:hover {
+									-webkit-text-decoration: underline;
+									text-decoration: underline;
+								}
+	
+								.css-1o8hbsc:focus {
+									box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+								}
+	
+								.css-1o8hbsc:disabled,
+								.css-1o8hbsc:disabled:focus,
+								.css-1o8hbsc:disabled:hover,
+								.css-1o8hbsc[aria-disabled=true],
+								.css-1o8hbsc[aria-disabled=true]:focus,
+								.css-1o8hbsc[aria-disabled=true]:hover {
+									opacity: 0.4;
+									cursor: not-allowed;
+									-webkit-text-decoration: none;
+									text-decoration: none;
+								}
+								</style><a style="text-decoration-line:underline" target="_blank" rel="noopener noreferrer" href="https://www.adobe.com/products/xd.html" class="css-1o8hbsc">Adobe XD </a> contributing to 18% year-over-year product growth. Today my code helps <span style="font-weight:600">save 900 hours</span> of user effort each day. Take a look at some other </style><a style="text-decoration-line:underline" target="_blank" rel="noopener noreferrer" href="https://helpx.adobe.com/xd/help/share-selected-artboards.html" class="css-1o8hbsc">features</a> I worked on during my time there.
+
+
+						</p>
+						<p class="on-the-fly"> Before that, as a software intern at Adobe, I built an interactive concept visualizer for the 
+							<style selector="1o8hbsc">
+							.css-1o8hbsc {
+								-webkit-transition: all 0.15s ease-out;
+								transition: all 0.15s ease-out;
+								cursor: pointer;
+								-webkit-text-decoration: none;
+								text-decoration: none;
+								outline: none;
+								color: var(--textNormal);
+								font-weight: 500;
+							}
+
+							.css-1o8hbsc:hover {
+								-webkit-text-decoration: underline;
+								text-decoration: underline;
+							}
+
+							.css-1o8hbsc:focus {
+								box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+							}
+
+							.css-1o8hbsc:disabled,
+							.css-1o8hbsc:disabled:focus,
+							.css-1o8hbsc:disabled:hover,
+							.css-1o8hbsc[aria-disabled=true],
+							.css-1o8hbsc[aria-disabled=true]:focus,
+							.css-1o8hbsc[aria-disabled=true]:hover {
+								opacity: 0.4;
+								cursor: not-allowed;
+								-webkit-text-decoration: none;
+								text-decoration: none;
+							}
+							</style><a style="text-decoration-line:underline" target="_blank" rel="noopener noreferrer" href="https://blog.adobe.com/en/topics/document-cloud" class="css-1o8hbsc">Document Cloud</a>, leading to 2 </style><a style="text-decoration-line:underline" target="_blank" rel="noopener noreferrer" href="https://patents.google.com/patent/US20210248323A1" class="css-1o8hbsc">patents</a> and a research <a style="text-decoration-line:underline" target="_blank" rel="noopener noreferrer" href="https://ojs.aaai.org/index.php/AAAI/article/view/7103" class="css-1o8hbsc">paper</a> in AAAI 2020. 
+						</p>
+						<style selector="resume">
+							.css-bio-button {
+								display: inline-block;
+								justify-content: center;
+								align-items: center;
+								-webkit-transition: all 0.15s ease-out;
+								transition: all 0.15s ease-out;
+								cursor: pointer;
+								-webkit-text-decoration: none;
+								text-decoration: none;
+								outline: none;
+								color: #000000;
+								color: #000000;
+								border: 3px solid#000000;
+								border-radius: 10px;
+								padding: 8px 16px;
+								font-size: 14px;
+								font-weight: 600;
+								-webkit-transition: background 0.2s ease;
+								transition: background 0.2s ease;
+							}
+
+							.css-bio-button:hover {
+								-webkit-text-decoration: underline;
+								text-decoration: underline;
+							}
+
+							.css-bio-button:focus {
+								box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+							}
+
+							.css-bio-button:disabled,
+							.css-bio-button:disabled:focus,
+							.css-bio-button:disabled:hover,
+							.css-bio-button[aria-disabled=true],
+							.css-bio-button[aria-disabled=true]:focus,
+							.css-bio-button[aria-disabled=true]:hover {
+								opacity: 0.4;
+								cursor: not-allowed;
+								-webkit-text-decoration: none;
+								text-decoration: none;
+							}
+
+							.css-bio-button:hover {
+								color: #FFF;
+								background: #000000;
+								-webkit-transition: background 0.2s ease;
+								transition: background 0.2s ease;
+								-webkit-text-decoration: none;
+								text-decoration: none;
+							}
+
+							.css-bio-button:active,
+							.css-bio-button:focus {
+								color: #FFF;
+								background: #000000;
+								-webkit-transition: background 0.2s ease;
+								transition: background 0.2s ease;
+								box-shadow: none !important;
+								border-radius: 10px;
+							}
+							</style>
+						
+						<a style="text-align:center;justify-content:center;" href="https://drive.google.com/file/d/1SLNXOzkuMlySVIsfPyTsZpIgxzPiH9GJ/view?usp=sharing" target="_blank" class="css-bio-button">My Resume ↓</a>
+						<a style="text-align:center;justify-content:center;" href="mailto:ssaurab144@gmail.com" target="_blank" class="css-bio-button">Email me ⤴</a>
+						<div>
+						<style selector="projects">
+						.css-projects {
+							display: -webkit-box;
+							display: -webkit-flex;
+							display: -ms-flexbox;
+							display: flex;
+							-webkit-flex-direction: column;
+							-ms-flex-direction: column;
+							flex-direction: column;
+							-webkit-align-items: center;
+							-webkit-box-align: center;
+							-ms-flex-align: center;
+							align-items: center;
+							margin: 100px -220px 20px -220px;
+							padding: 0 40px;
+						}
+
+						@media screen and (max-width:1280px) {
+							.css-projects {
+								margin: 100px -100px 20px -100px;
+								padding: 0 20px;
+							}
+						}
+
+						@media screen and (max-width:850px) {
+							.css-projects {
+								margin: 40px 0;
+								padding: 0;
+							}
+						}
+						</style>
+						<div class="css-projects">
+							<style selector="first-card-container">
+							.css-first-card-container {
+								position: -webkit-sticky;
+								position: sticky;
+								top: 0px;
+								z-index: 0;
+								display: -webkit-box;
+								display: -webkit-flex;
+								display: -ms-flexbox;
+								display: flex;
+								width: 100%;
+								-webkit-flex-direction: column;
+								-ms-flex-direction: column;
+								flex-direction: column;
+								-webkit-align-items: center;
+								-webkit-box-align: center;
+								-ms-flex-align: center;
+								align-items: center;
+								-webkit-flex: 0 0 auto;
+								-ms-flex: 0 0 auto;
+								flex: 0 0 auto;
+							}
+
+							@media screen and (max-width:850px) {
+								.css-first-card-container {
+									position: relative;
+								}
+							}
+							</style>
+							<div class="css-first-card-container">
+								<style selector="project-title">
+								.css-project-title {
+									margin-right: auto;
+									margin-left: 180px;
+									margin-top: 40px;
+								}
+
+								@media screen and (max-width:1280px) {
+									.css-project-title {
+										margin-left: 80px;
+									}
+								}
+
+								@media screen and (max-width:850px) {
+									.css-project-title {
+										margin-left: 0;
+									}
+								}
+								@media screen and (max-width: 700px) {
+									.css-project-title {
+										margin-top: 30px;
+									}
+								}
+								</style>
+								<h3 class="css-project-title em8ni268" style=font-size:xx-large>What I've been up to</h2>
+								<style selector="card-one">
+								.css-card-one {
+									display: -webkit-box;
+									display: -webkit-flex;
+									display: -ms-flexbox;
+									display: flex;
+									position: -webkit-sticky;
+									position: sticky;
+									max-width: 1280px;
+									width: 100%;
+									height: 520px;
+									border-radius: 20px;
+									overflow: hidden;
+									background-color: #d6c5f5;
+									margin-bottom: 200px;
+									top: undefinedpx;
+								}
+
+								@media screen and (max-width:850px) {
+									.css-card-one {
+										-webkit-flex-direction: column;
+										-ms-flex-direction: column;
+										flex-direction: column;
+										position: relative;
+										height: calc(100% + 40px);
+										margin-bottom: 20px;
+										top: 20px;
+									}
+								}
+								</style>
+								<div class="css-card-one card-style">
+									<style selector="upper-styling-wrapper">
+									.css-upper-styling-wrapper {
+										display: -webkit-box;
+										display: -webkit-flex;
+										display: -ms-flexbox;
+										display: flex;
+										max-width: 50%;
+										-webkit-flex-direction: column;
+										-ms-flex-direction: column;
+										flex-direction: column;
+										-webkit-flex: 1 1 auto;
+										-ms-flex: 1 1 auto;
+										flex: 1 1 auto;
+										padding: 80px 40px 40px 80px;
+									}
+
+									@media screen and (max-width:850px) {
+										.css-upper-styling-wrapper {
+											padding: 40px;
+										}
+									}
+
+									@media screen and (max-width:800px) {
+										.css-upper-styling-wrapper {
+											padding: 20px;
+											max-width: 100%;
+										}
+									}
+									</style>
+									<div class="css-upper-styling-wrapper upper-styling">
+										<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="100.000000pt" height="100.000000pt" viewBox="0 0 200.000000 70.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,63.000000) scale(0.100000,-0.125000)"
+fill="#000000" stroke="none">
+<path d="M55 410 c0 -206 1 -291 2 -188 2 104 2 272 0 375 -1 104 -2 19 -2
+-187z"/>
+<path d="M110 410 c0 -240 4 -370 10 -370 6 0 10 130 10 370 0 240 -4 370 -10
+370 -6 0 -10 -130 -10 -370z"/>
+<path d="M185 410 c0 -206 1 -291 2 -188 2 104 2 272 0 375 -1 104 -2 19 -2
+-187z"/>
+<path d="M254 410 c0 -206 2 -306 3 -222 l4 153 157 -3 157 -3 5 -150 c3 -85
+6 11 6 225 0 206 -2 309 -3 228 l-4 -148 -159 0 -159 0 -4 148 c-1 81 -3 -22
+-3 -228z m324 33 l3 -23 -160 0 -161 0 0 25 0 26 158 -3 c154 -3 157 -3 160
+-25z m0 -65 c-3 -23 -5 -23 -158 -23 -153 0 -155 0 -158 23 l-3 22 161 0 161
+0 -3 -22z"/>
+<path d="M640 410 c0 -240 4 -370 10 -370 6 0 10 130 10 370 0 240 -4 370 -10
+370 -6 0 -10 -130 -10 -370z"/>
+<path d="M715 410 c0 -206 1 -291 2 -188 2 104 2 272 0 375 -1 104 -2 19 -2
+-187z"/>
+<path d="M770 410 c0 -240 4 -370 10 -370 6 0 10 130 10 370 0 240 -4 370 -10
+370 -6 0 -10 -130 -10 -370z"/>
+<path d="M1150 425 l0 -115 39 0 c40 0 40 0 43 43 3 39 5 42 36 45 32 3 32 3
+32 -42 l0 -46 40 0 40 0 0 115 0 115 -40 0 -40 0 0 -46 c0 -45 0 -45 -32 -42
+-31 3 -33 6 -36 46 -3 42 -3 42 -43 42 l-39 0 0 -115z"/>
+<path d="M1847 533 c-4 -3 -7 -48 -7 -99 0 -108 9 -124 71 -124 36 0 39 2 39
+29 0 20 -6 30 -20 34 -18 5 -20 14 -20 86 l0 81 -28 0 c-16 0 -32 -3 -35 -7z"/>
+<path d="M1442 460 c-64 -60 -24 -150 67 -150 56 0 72 9 65 36 -4 16 -12 19
+-38 16 -19 -2 -37 1 -40 7 -5 7 3 11 21 11 15 0 38 3 50 6 18 5 20 10 12 37
+-5 18 -17 38 -26 45 -26 19 -86 15 -111 -8z m67 -41 c-16 -10 -23 -4 -14 10 3
+6 11 8 17 5 6 -4 5 -9 -3 -15z"/>
+<path d="M1629 459 c-26 -26 -33 -64 -19 -100 17 -41 33 -47 123 -47 l77 -1 0
+84 0 83 -81 0 c-66 0 -84 -3 -100 -19z m111 -64 c0 -17 -30 -34 -47 -28 -16 6
+-17 35 -1 51 14 14 48 -2 48 -23z"/>
+</g>
+</svg>
+										<style selector="109ghj1">
+										.css-109ghj1 {
+											color: #381a56;
+											margin-top: 20px;
+											margin-bottom: 4px;
+										}
+										</style>
+										<!-- <h3 color="#381a56" class="css-109ghj1 em8ni269">Heal AI</h3> -->
+										<style selector="17n5efx">
+										.css-17n5efx {
+											color: #381a56;
+											font-size: 13px;
+											font-weight: 500;
+											opacity: 0.7;
+											text-transform: uppercase;
+											margin-bottom: 30px;
+										}
+										</style><span color="#381a56" class="css-17n5efx card-style0">Startup · Project</span>
+										<style selector="3qd4pg">
+										.css-3qd4pg {
+											color: #6e3ba0;
+										}
+										</style>
+										<p color="#6e3ba0" class="css-3qd4pg card-style1">A computer vision based nutrition and fitness tracker application. Currently in beta-testing.</p>
+										
+										<style selector="19y5gpx">
+										.css-19y5gpx {
+											color: #381a56;
+											border: 3px solid#381a56;
+											border-radius: 10px;
+											padding: 8px 16px;
+											width: -webkit-fit-content;
+											width: -moz-fit-content;
+											width: fit-content;
+											font-size: 14px;
+											font-weight: 600;
+											margin-right: 10px;
+											-webkit-transition: background 0.2s ease;
+											transition: background 0.2s ease;
+										}
+
+										.css-19y5gpx:hover {
+											color: #FFF;
+											background: #381a56;
+											-webkit-transition: background 0.2s ease;
+											transition: background 0.2s ease;
+											-webkit-text-decoration: none;
+											text-decoration: none;
+										}
+
+										.css-19y5gpx:active,
+										.css-19y5gpx:focus {
+											color: #FFF;
+											background: #381a56;
+											-webkit-transition: background 0.2s ease;
+											transition: background 0.2s ease;
+											box-shadow: none !important;
+											border-radius: 10px;
+										}
+										</style>
+										<style selector="fugtph">
+										.css-fugtph {
+											-webkit-transition: all 0.15s ease-out;
+											transition: all 0.15s ease-out;
+											cursor: pointer;
+											-webkit-text-decoration: none;
+											text-decoration: none;
+											outline: none;
+											color: #381a56;
+											color: #381a56;
+											border: 3px solid#381a56;
+											border-radius: 10px;
+											padding: 8px 16px;
+											width: -webkit-fit-content;
+											width: -moz-fit-content;
+											width: fit-content;
+											font-size: 14px;
+											font-weight: 600;
+											margin-right: 10px;
+											-webkit-transition: background 0.2s ease;
+											transition: background 0.2s ease;
+										}
+
+										.css-fugtph:hover {
+											-webkit-text-decoration: underline;
+											text-decoration: underline;
+										}
+
+										.css-fugtph:focus {
+											box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+										}
+
+										.css-fugtph:disabled,
+										.css-fugtph:disabled:focus,
+										.css-fugtph:disabled:hover,
+										.css-fugtph[aria-disabled=true],
+										.css-fugtph[aria-disabled=true]:focus,
+										.css-fugtph[aria-disabled=true]:hover {
+											opacity: 0.4;
+											cursor: not-allowed;
+											-webkit-text-decoration: none;
+											text-decoration: none;
+										}
+
+										.css-fugtph:hover {
+											color: #FFF;
+											background: #381a56;
+											-webkit-transition: background 0.2s ease;
+											transition: background 0.2s ease;
+											-webkit-text-decoration: none;
+											text-decoration: none;
+										}
+
+										.css-fugtph:active,
+										.css-fugtph:focus {
+											color: #FFF;
+											background: #381a56;
+											-webkit-transition: background 0.2s ease;
+											transition: background 0.2s ease;
+											box-shadow: none !important;
+											border-radius: 10px;
+										}
+										</style>
+									</div>
+									<style selector="icon-styling-wrapper">
+									.css-icon-styling-wrapper {
+										min-width: 50%;
+										max-width: 50%;
+										position: absolute;
+										right: -20px;
+										bottom: -100px;
+										-webkit-filter: drop-shadow(-20px 20px 0 rgba(0, 0, 0, 0.1));
+										filter: drop-shadow(-20px 20px 0 rgba(0, 0, 0, 0.1));
+									}
+
+									@media screen and (max-width:1280px) {
+										.css-icon-styling-wrapper {
+											bottom: -20px;
+											max-height: 90%;
+										}
+									}
+
+									@media screen and (max-width:800px) {
+										.css-icon-styling-wrapper {
+											position: relative;
+											right: 0;
+											left: 0;
+											bottom: 0;
+											height: 100%;
+											min-width: 100%;
+											max-width: 100%;
+											padding: 0 20px 20px 20px;
+											-webkit-filter: none;
+											filter: none;
+										}
+									}
+									</style>
+									<div class="css-icon-styling-wrapper icon-styling">
+										<div class=" image-wrapper" style="position:relative;overflow:hidden">
+											<div aria-hidden="true" style="width:100%;padding-bottom:91.0394265232975%"></div><img aria-hidden="true" src="/assets/images/healNew.png" alt="" style="position:absolute;top:0;left:0;width:100%;height:90%;object-fit:cover;object-position:left;opacity:1;transition-delay:500ms" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<style selector="card-two">
+							.css-card-two {
+								display: -webkit-box;
+								display: -webkit-flex;
+								display: -ms-flexbox;
+								display: flex;
+								position: -webkit-sticky;
+								position: sticky;
+								max-width: 1280px;
+								width: 100%;
+								height: 520px;
+								border-radius: 20px;
+								overflow: hidden;
+								background-color: #f1f1f1;
+								margin-bottom: 180px;
+								top: 130px;
+							}
+
+							@media screen and (max-width:850px) {
+								.css-card-two {
+									-webkit-flex-direction: column;
+									-ms-flex-direction: column;
+									flex-direction: column;
+									position: relative;
+									height: calc(100% + 40px);
+									margin-bottom: 20px;
+									top: 20px;
+								}
+							}
+							</style>
+							<div class="css-card-two card-style">
+								<div class="css-upper-styling-wrapper upper-styling"><svg width="67.61" height="33.91" viewBox="0 0 62 62">
+									<img src = "/assets/svg/cp.svg" alt="My Happy SVG" style="width:20%;height:20%"/>
+									</svg>
+									<style selector="19uerl0">
+									.css-19uerl0 {
+										color: #000;
+										margin-top: 20px;
+										margin-bottom: 4px;
+									}
+									</style>
+									<h3 color="#000" class="css-19uerl0 em8ni269">Competitive Programming</h3>
+									<style selector="i8xwwp">
+									.css-i8xwwp {
+										color: #000;
+										font-size: 13px;
+										font-weight: 500;
+										opacity: 0.7;
+										text-transform: uppercase;
+										margin-bottom: 30px;
+									}
+									</style><span color="#000" class="css-i8xwwp card-style0">Hobby</span>
+									<style selector="7b7t20">
+									.css-7b7t20 {
+										color: #000;
+									}
+									</style>
+									<p color="#000" class="css-7b7t20 card-style1">Participating in coding contests since 2016. Made it to multiple finals including Yandex Cup 2019, 20 and Google Code Jam Round 2.</p>
+									<style selector="1ixu15u">
+									.css-1ixu15u {
+										color: #000;
+										border: 3px solid#000;
+										border-radius: 10px;
+										padding: 8px 16px;
+										width: -webkit-fit-content;
+										width: -moz-fit-content;
+										width: fit-content;
+										font-size: 14px;
+										font-weight: 600;
+										margin-right: 10px;
+										-webkit-transition: background 0.2s ease;
+										transition: background 0.2s ease;
+									}
+
+									.css-1ixu15u:hover {
+										color: #FFF;
+										background: #000;
+										-webkit-transition: background 0.2s ease;
+										transition: background 0.2s ease;
+										-webkit-text-decoration: none;
+										text-decoration: none;
+									}
+
+									.css-1ixu15u:active,
+									.css-1ixu15u:focus {
+										color: #FFF;
+										background: #000;
+										-webkit-transition: background 0.2s ease;
+										transition: background 0.2s ease;
+										box-shadow: none !important;
+										border-radius: 10px;
+									}
+									</style>
+									<style selector="1r9k30n">
+									.css-1r9k30n {
+										-webkit-transition: all 0.15s ease-out;
+										transition: all 0.15s ease-out;
+										cursor: pointer;
+										-webkit-text-decoration: none;
+										text-decoration: none;
+										outline: none;
+										color: #000;
+										color: #000;
+										border: 3px solid#000;
+										border-radius: 10px;
+										padding: 8px 16px;
+										width: -webkit-fit-content;
+										width: -moz-fit-content;
+										width: fit-content;
+										font-size: 14px;
+										font-weight: 600;
+										margin-right: 10px;
+										-webkit-transition: background 0.2s ease;
+										transition: background 0.2s ease;
+									}
+
+									.css-1r9k30n:hover {
+										-webkit-text-decoration: underline;
+										text-decoration: underline;
+									}
+
+									.css-1r9k30n:focus {
+										box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+									}
+
+									.css-1r9k30n:disabled,
+									.css-1r9k30n:disabled:focus,
+									.css-1r9k30n:disabled:hover,
+									.css-1r9k30n[aria-disabled=true],
+									.css-1r9k30n[aria-disabled=true]:focus,
+									.css-1r9k30n[aria-disabled=true]:hover {
+										opacity: 0.4;
+										cursor: not-allowed;
+										-webkit-text-decoration: none;
+										text-decoration: none;
+									}
+
+									.css-1r9k30n:hover {
+										color: #FFF;
+										background: #000;
+										-webkit-transition: background 0.2s ease;
+										transition: background 0.2s ease;
+										-webkit-text-decoration: none;
+										text-decoration: none;
+									}
+
+									.css-1r9k30n:active,
+									.css-1r9k30n:focus {
+										color: #FFF;
+										background: #000;
+										-webkit-transition: background 0.2s ease;
+										transition: background 0.2s ease;
+										box-shadow: none !important;
+										border-radius: 10px;
+									}
+									</style>
+								</div>
+								<div class="css-icon-styling-wrapper icon-styling">
+									<div class=" image-wrapper" style="position:relative;overflow:hidden">
+										<div aria-hidden="true" style="width:100%;padding-bottom:91.0394265232975%"></div><img aria-hidden="true" src="/assets/icons/codeforces1.png" alt="" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms" /><noscript>/><noscript>
+										</noscript>
+									</div>
+								</div>
+							</div>
+							<style selector="card-three">
+							.css-card-three {
+								display: -webkit-box;
+								display: -webkit-flex;
+								display: -ms-flexbox;
+								display: flex;
+								position: -webkit-sticky;
+								position: sticky;
+								max-width: 1280px;
+								width: 100%;
+								height: 520px;
+								border-radius: 20px;
+								overflow: hidden;
+								background-color: #cfb4cf;
+								margin-bottom: 160px;
+								top: 150px;
+							}
+
+							@media screen and (max-width:850px) {
+								.css-card-three {
+									-webkit-flex-direction: column;
+									-ms-flex-direction: column;
+									flex-direction: column;
+									position: relative;
+									height: calc(100% + 40px);
+									margin-bottom: 20px;
+									top: 20px;
+								}
+							}
+							</style>
+							<div class="css-card-three card-style">
+								<div class="css-upper-styling-wrapper upper-styling"><svg height="75.13" viewBox="0 0 400 400" width="66.71"><svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="400" viewBox="0, 0, 400,400">
+									<img src = "/assets/svg/gtnew.svg" alt="GTSVG" style="width:20%;height:20%"/>
+								</svg>
+									<style selector="3f0kc3">
+									.css-3f0kc3 {
+										color: #3e0c31;
+										margin-top: 20px;
+										margin-bottom: 4px;
+									}
+									</style>
+									<h3 color="#0c3e2a" class="css-3f0kc3 em8ni269">Photographing Georgia Tech</h3>
+									<style data-emotion-wcss="ks2myc">
+									.css-ks2myc {
+										color: #3e0c39;
+										font-size: 13px;
+										font-weight: 500;
+										opacity: 0.7;
+										text-transform: uppercase;
+										margin-bottom: 30px;
+									}
+									</style><span color="#0c3e2a" class="css-ks2myc card-style0">Hobby</span>
+									<style selector="1ivykus">
+									.css-1ivykus {
+										color: #731171;
+									}
+									</style>
+									<p color="#11734c" class="css-1ivykus card-style1">Photographing the beautiful Georgia Institute of Technology campus.</p>
+									<style selector="3i6llw">
+									.css-3i6llw {
+										display: -webkit-box;
+										display: -webkit-flex;
+										display: -ms-flexbox;
+										display: flex;
+										-webkit-flex-direction: row;
+										-ms-flex-direction: row;
+										flex-direction: row;
+									}
+
+									@media screen and (max-width:850px) {
+										.css-3i6llw {
+											-webkit-flex-direction: column;
+											-ms-flex-direction: column;
+											flex-direction: column;
+										}
+									}
+
+									@media screen and (max-width:800px) {
+										.css-3i6llw {
+											-webkit-flex-direction: row;
+											-ms-flex-direction: row;
+											flex-direction: row;
+										}
+									}
+									</style>
+									<div class="css-3i6llw em8ni267">
+										<style selector="95u8os">
+										.css-95u8os {
+											color: #3e0c31;
+											border: 3px solid#3e0c31;
+											border-radius: 10px;
+											padding: 8px 16px;
+											width: -webkit-fit-content;
+											width: -moz-fit-content;
+											width: fit-content;
+											font-size: 14px;
+											font-weight: 600;
+											margin-right: 10px;
+											-webkit-transition: background 0.2s ease;
+											transition: background 0.2s ease;
+										}
+
+										.css-95u8os:hover {
+											color: #FFF;
+											background: #0c3e2a;
+											-webkit-transition: background 0.2s ease;
+											transition: background 0.2s ease;
+											-webkit-text-decoration: none;
+											text-decoration: none;
+										}
+
+										.css-95u8os:active,
+										.css-95u8os:focus {
+											color: #FFF;
+											background: #3e0c31;
+											-webkit-transition: background 0.2s ease;
+											transition: background 0.2s ease;
+											box-shadow: none !important;
+											border-radius: 10px;
+										}
+										</style><a href="" target="_blank" class="em8ni265 css-1r9k30n">See more ⤴</a>
+										<style selector="owj7du">
+										.css-owj7du {
+											-webkit-transition: all 0.15s ease-out;
+											transition: all 0.15s ease-out;
+											cursor: pointer;
+											-webkit-text-decoration: none;
+											text-decoration: none;
+											outline: none;
+											color: #3e0c31;
+											border: 3px solid#3e0c31;
+											border-radius: 10px;
+											padding: 8px 16px;
+											width: -webkit-fit-content;
+											width: -moz-fit-content;
+											width: fit-content;
+											font-size: 14px;
+											font-weight: 600;
+											margin-right: 10px;
+											-webkit-transition: background 0.2s ease;
+											transition: background 0.2s ease;
+										}
+
+										.css-owj7du:hover {
+											-webkit-text-decoration: underline;
+											text-decoration: underline;
+										}
+
+										.css-owj7du:focus {
+											box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+										}
+
+										.css-owj7du:disabled,
+										.css-owj7du:disabled:focus,
+										.css-owj7du:disabled:hover,
+										.css-owj7du[aria-disabled=true],
+										.css-owj7du[aria-disabled=true]:focus,
+										.css-owj7du[aria-disabled=true]:hover {
+											opacity: 0.4;
+											cursor: not-allowed;
+											-webkit-text-decoration: none;
+											text-decoration: none;
+										}
+
+										.css-owj7du:hover {
+											color: #FFF;
+											background: #3e0c31;
+											-webkit-transition: background 0.2s ease;
+											transition: background 0.2s ease;
+											-webkit-text-decoration: none;
+											text-decoration: none;
+										}
+
+										.css-owj7du:active,
+										.css-owj7du:focus {
+											color: #FFF;
+											background: #3e0c31;
+											-webkit-transition: background 0.2s ease;
+											transition: background 0.2s ease;
+											box-shadow: none !important;
+											border-radius: 10px;
+										}
+										</style>
+										<style selector="h4c2v7">
+										.css-h4c2v7 {
+											color: #0c3e2a;
+											opacity: 0.4;
+											border: 2px solid#0c3e2a;
+											cursor: not-allowed;
+											border-radius: 10px;
+											padding: 8px 16px;
+											width: -webkit-fit-content;
+											width: -moz-fit-content;
+											width: fit-content;
+											font-size: 14px;
+											font-weight: 600;
+											margin-right: 10px;
+										}
+
+										.css-h4c2v7:hover {
+											-webkit-text-decoration: none;
+											text-decoration: none;
+										}
+
+										.css-h4c2v7:active,
+										.css-h4c2v7:focus {
+											box-shadow: none !important;
+											border-radius: 10px;
+										}
+
+										@media screen and (max-width:850px) {
+											.css-h4c2v7 {
+												-webkit-flex-direction: column;
+												-ms-flex-direction: column;
+												flex-direction: column;
+												margin-right: 0;
+												margin-top: 10px;
+											}
+										}
+
+										@media screen and (max-width:800px) {
+											.css-h4c2v7 {
+												-webkit-flex-direction: row;
+												-ms-flex-direction: row;
+												flex-direction: row;
+												margin-right: 10px;
+											}
+										}
+										</style>
+										<style selector="12ropb">
+										.css-12ropb {
+											-webkit-transition: all 0.15s ease-out;
+											transition: all 0.15s ease-out;
+											cursor: pointer;
+											-webkit-text-decoration: none;
+											text-decoration: none;
+											outline: none;
+											color: #0c3e2a;
+											color: #0c3e2a;
+											opacity: 0.4;
+											border: 2px solid#0c3e2a;
+											cursor: not-allowed;
+											border-radius: 10px;
+											padding: 8px 16px;
+											width: -webkit-fit-content;
+											width: -moz-fit-content;
+											width: fit-content;
+											font-size: 14px;
+											font-weight: 600;
+											margin-right: 10px;
+										}
+
+										.css-12ropb:hover {
+											-webkit-text-decoration: underline;
+											text-decoration: underline;
+										}
+
+										.css-12ropb:focus {
+											box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+										}
+
+										.css-12ropb:disabled,
+										.css-12ropb:disabled:focus,
+										.css-12ropb:disabled:hover,
+										.css-12ropb[aria-disabled=true],
+										.css-12ropb[aria-disabled=true]:focus,
+										.css-12ropb[aria-disabled=true]:hover {
+											opacity: 0.4;
+											cursor: not-allowed;
+											-webkit-text-decoration: none;
+											text-decoration: none;
+										}
+
+										.css-12ropb:hover {
+											-webkit-text-decoration: none;
+											text-decoration: none;
+										}
+
+										.css-12ropb:active,
+										.css-12ropb:focus {
+											box-shadow: none !important;
+											border-radius: 10px;
+										}
+
+										@media screen and (max-width:850px) {
+											.css-12ropb {
+												-webkit-flex-direction: column;
+												-ms-flex-direction: column;
+												flex-direction: column;
+												margin-right: 0;
+												margin-top: 10px;
+											}
+										}
+
+										@media screen and (max-width:800px) {
+											.css-12ropb {
+												-webkit-flex-direction: row;
+												-ms-flex-direction: row;
+												flex-direction: row;
+												margin-right: 10px;
+											}
+										}
+										</style>
+									</div>
+								</div>
+								<div class="css-icon-styling-wrapper icon-styling">
+									<div class=" image-wrapper" style="position:relative;overflow:hidden">
+										<div aria-hidden="true" style="width:100%;padding-bottom:91.0394265232975%"></div><img aria-hidden="true" src="/assets/images/IMG_0073.png" alt="" style="position:absolute;top:0;left:0;width:120%;height:120%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms" />
+									</div>
+								</div>
+							</div>
+							<style selector="card-four">
+							.css-card-four {
+								display: -webkit-box;
+								display: -webkit-flex;
+								display: -ms-flexbox;
+								display: flex;
+								position: -webkit-sticky;
+								position: sticky;
+								max-width: 1280px;
+								width: 100%;
+								height: 520px;
+								border-radius: 20px;
+								overflow: hidden;
+								background-color: #efefef;
+								margin-bottom: 140px;
+								top: 170px;
+							}
+
+							@media screen and (max-width:850px) {
+								.css-card-four {
+									-webkit-flex-direction: column;
+									-ms-flex-direction: column;
+									flex-direction: column;
+									position: relative;
+									height: calc(100% + 40px);
+									margin-bottom: 20px;
+									top: 20px;
+								}
+							}
+							</style>
+							<div class="css-card-four card-style">
+								<div class="css-upper-styling-wrapper upper-styling"><svg width="112.18" height="73.3" viewBox="0 0 70.18 40.3">
+									<img src = "/assets/svg/facerecog.svg" alt="My Happy SVG" style="width:20%;height:50%"/>
+									</svg>
+									<style selector="1c6otqt">
+									.css-1c6otqt {
+										color: #534d53;
+										margin-top: 20px;
+										margin-bottom: 4px;
+									}
+									</style>
+									<h3 color="#a2360d" class="css-1c6otqt em8ni269">Federated Learning based Face Recognition for Olympic Games</h3>
+									<style selector="15id38l">
+									.css-15id38l {
+										color: #534d53;
+										font-size: 13px;
+										font-weight: 500;
+										opacity: 0.7;
+										text-transform: uppercase;
+										margin-bottom: 30px;
+									}
+									</style><span color="#a2360d" class="css-15id38l card-style0">Project</span>
+									<style selector="1uhnbs">
+									.css-1uhnbs {
+										color: #534d53;
+									}
+									</style>
+									<p color="#a04300" class="css-1uhnbs card-style1">Built a seamless face recognition-based entry software for the Olympics arenas, scalable for thousands of athletes and staff.</p>
+									<style selector="peuys3">
+									.css-peuys3 {
+										color: #534d53;
+										border: 3px solid#343134;
+										border-radius: 10px;
+										padding: 8px 16px;
+										width: -webkit-fit-content;
+										width: -moz-fit-content;
+										width: fit-content;
+										font-size: 14px;
+										font-weight: 600;
+										margin-right: 10px;
+										-webkit-transition: background 0.2s ease;
+										transition: background 0.2s ease;
+									}
+
+									.css-peuys3:hover {
+										color: #FFF;
+										background: #312e31;
+										-webkit-transition: background 0.2s ease;
+										transition: background 0.2s ease;
+										-webkit-text-decoration: none;
+										text-decoration: none;
+									}
+
+									.css-peuys3:active,
+									.css-peuys3:focus {
+										color: #FFF;
+										background: #312e31;
+										-webkit-transition: background 0.2s ease;
+										transition: background 0.2s ease;
+										box-shadow: none !important;
+										border-radius: 10px;
+									}
+									</style>
+									<style selector="13vgdgk">
+									.css-13vgdgk {
+										-webkit-transition: all 0.15s ease-out;
+										transition: all 0.15s ease-out;
+										cursor: pointer;
+										-webkit-text-decoration: none;
+										text-decoration: none;
+										outline: none;
+										color: #312e31;
+										color: #312e31;
+										border: 3px solid#312e31;
+										border-radius: 10px;
+										padding: 8px 16px;
+										width: -webkit-fit-content;
+										width: -moz-fit-content;
+										width: fit-content;
+										font-size: 14px;
+										font-weight: 600;
+										margin-right: 10px;
+										-webkit-transition: background 0.2s ease;
+										transition: background 0.2s ease;
+									}
+
+									.css-13vgdgk:hover {
+										-webkit-text-decoration: underline;
+										text-decoration: underline;
+									}
+
+									.css-13vgdgk:focus {
+										box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+									}
+
+									.css-13vgdgk:disabled,
+									.css-13vgdgk:disabled:focus,
+									.css-13vgdgk:disabled:hover,
+									.css-13vgdgk[aria-disabled=true],
+									.css-13vgdgk[aria-disabled=true]:focus,
+									.css-13vgdgk[aria-disabled=true]:hover {
+										opacity: 0.4;
+										cursor: not-allowed;
+										-webkit-text-decoration: none;
+										text-decoration: none;
+									}
+
+									.css-13vgdgk:hover {
+										color: #FFF;
+										background: #312e31;
+										-webkit-transition: background 0.2s ease;
+										transition: background 0.2s ease;
+										-webkit-text-decoration: none;
+										text-decoration: none;
+									}
+
+									.css-13vgdgk:active,
+									.css-13vgdgk:focus {
+										color: #FFF;
+										background: #312e31;
+										-webkit-transition: background 0.2s ease;
+										transition: background 0.2s ease;
+										box-shadow: none !important;
+										border-radius: 10px;
+									}
+									</style>
+								</div>
+								<div class="css-icon-styling-wrapper icon-styling">
+									<div class=" image-wrapper" style="position:relative;overflow:hidden">
+										<div aria-hidden="true" style="width:100%;padding-bottom:91.0394265232975%"></div><img aria-hidden="true" src="/assets/icons/fedLearn2.png" alt="" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms" />
+									</div>
+								</div>
+							</div>
+							<style selector="card-five">
+							.css-card-five {
+								display: -webkit-box;
+								display: -webkit-flex;
+								display: -ms-flexbox;
+								display: flex;
+								position: -webkit-sticky;
+								position: sticky;
+								max-width: 1280px;
+								width: 100%;
+								height: 520px;
+								border-radius: 20px;
+								overflow: hidden;
+								background-color: #82f9d1;
+								margin-bottom: 120px;
+								top: 190px;
+							}
+
+							@media screen and (max-width:850px) {
+								.css-card-five {
+									-webkit-flex-direction: column;
+									-ms-flex-direction: column;
+									flex-direction: column;
+									position: relative;
+									height: calc(100% + 40px);
+									margin-bottom: 20px;
+									top: 20px;
+								}
+							}
+							</style>
+							<div class="css-card-five card-style">
+								<div class="css-upper-styling-wrapper upper-styling"><svg width="17.73" height="11.43" viewBox="0 0 17.73 1.43">
+						<img src="/assets/svg/icons8-smiling-50.png" style="width:13%;height:13%"></img>						</svg>
+									<style selector="dvl5nl">
+									.css-dvl5nl {
+										color: #4e0f0f;
+										margin-top: 20px;
+										margin-bottom: 0px;
+									}
+									</style>
+									<h3 color="#4e0f0f" class="css-dvl5nl em8ni269">Spirit Watch</h3><span color="#a2360d" class="css-15id38l card-style0">Project</span>
+									<style selector="nronqs">
+									.css-nronqs {
+										color: #670a0a;
+									}
+									</style>
+									<p color="#a2360d" class="css-nronqs card-style1">Built a serverless application on AWS ECS tracking mental health of Georgia Tech students based on the sentiment in Discord, Reddit and Twitter posts using Google Natural Language API.
+										</p>
+									<style selector="1v5m52a">
+									.css-1v5m52a {
+										color: #4e0f0f;
+										opacity: 0.4;
+										border: 2px solid#4e0f0f;
+										cursor: not-allowed;
+										border-radius: 10px;
+										padding: 8px 16px;
+										width: -webkit-fit-content;
+										width: -moz-fit-content;
+										width: fit-content;
+										font-size: 14px;
+										font-weight: 600;
+										margin-right: 10px;
+									}
+
+									.css-1v5m52a:hover {
+										-webkit-text-decoration: none;
+										text-decoration: none;
+									}
+
+									.css-1v5m52a:active,
+									.css-1v5m52a:focus {
+										box-shadow: none !important;
+										border-radius: 10px;
+									}
+
+									@media screen and (max-width:850px) {
+										.css-1v5m52a {
+											-webkit-flex-direction: column;
+											-ms-flex-direction: column;
+											flex-direction: column;
+											margin-right: 0;
+											margin-top: 10px;
+										}
+									}
+
+									@media screen and (max-width:800px) {
+										.css-1v5m52a {
+											-webkit-flex-direction: row;
+											-ms-flex-direction: row;
+											flex-direction: row;
+											margin-right: 10px;
+										}
+									}
+									</style>
+									<style selector="1ael28f">
+									.css-1ael28f {
+										-webkit-transition: all 0.15s ease-out;
+										transition: all 0.15s ease-out;
+										cursor: pointer;
+										-webkit-text-decoration: none;
+										text-decoration: none;
+										outline: none;
+										color: #4e0f0f;
+										color: #4e0f0f;
+										opacity: 0.4;
+										border: 2px solid#4e0f0f;
+										cursor: not-allowed;
+										border-radius: 10px;
+										padding: 8px 16px;
+										width: -webkit-fit-content;
+										width: -moz-fit-content;
+										width: fit-content;
+										font-size: 14px;
+										font-weight: 600;
+										margin-right: 10px;
+									}
+
+									.css-1ael28f:hover {
+										-webkit-text-decoration: underline;
+										text-decoration: underline;
+									}
+
+									.css-1ael28f:focus {
+										box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+									}
+
+									.css-1ael28f:disabled,
+									.css-1ael28f:disabled:focus,
+									.css-1ael28f:disabled:hover,
+									.css-1ael28f[aria-disabled=true],
+									.css-1ael28f[aria-disabled=true]:focus,
+									.css-1ael28f[aria-disabled=true]:hover {
+										opacity: 0.4;
+										cursor: not-allowed;
+										-webkit-text-decoration: none;
+										text-decoration: none;
+									}
+
+									.css-1ael28f:hover {
+										-webkit-text-decoration: none;
+										text-decoration: none;
+									}
+
+									.css-1ael28f:active,
+									.css-1ael28f:focus {
+										box-shadow: none !important;
+										border-radius: 10px;
+									}
+
+									@media screen and (max-width:850px) {
+										.css-1ael28f {
+											-webkit-flex-direction: column;
+											-ms-flex-direction: column;
+											flex-direction: column;
+											margin-right: 0;
+											margin-top: 10px;
+										}
+									}
+
+									@media screen and (max-width:800px) {
+										.css-1ael28f {
+											-webkit-flex-direction: row;
+											-ms-flex-direction: row;
+											flex-direction: row;
+											margin-right: 10px;
+										}
+									}
+									</style>
+								</div>
+								<div class="css-icon-styling-wrapper icon-styling">
+									<div class=" image-wrapper" style="position:relative;overflow:hidden">
+										<div aria-hidden="true" style="width:80%;padding-bottom:101.22807017543859%"></div><img aria-hidden="true" src="/assets/icons/GTMentalHealth.png" alt="" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms" />
+									</div>
+								</div>
+							</div>
+							<style selector="card-six">
+							.css-card-six {
+								display: -webkit-box;
+								display: -webkit-flex;
+								display: -ms-flexbox;
+								display: flex;
+								position: -webkit-sticky;
+								position: sticky;
+								max-width: 1280px;
+								width: 100%;
+								height: 520px;
+								border-radius: 20px;
+								overflow: hidden;
+								background-color: #f1f1f1;
+								margin-bottom: 100px;
+								top: 210px;
+							}
+
+							@media screen and (max-width:850px) {
+								.css-card-six {
+									-webkit-flex-direction: column;
+									-ms-flex-direction: column;
+									flex-direction: column;
+									position: relative;
+									height: calc(100% + 40px);
+									margin-bottom: 20px;
+									top: 20px;
+								}
+							}
+							</style>
+							
+						</main>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- <button type="button" class="collapsible">See Credits</button>
+		<div class="contenta">
+			<p>
+			Credits: Website Template (Ben Wolfson), GT Logo (Official Georgia Tech Logo), <a href="https://freesvgdesigns.com">SVGs</a>, Heal Mockup (YesYou)
+			
+			</p>
+		</div> -->
+
+	<div class="em8ni265 css-1r9k30n" onclick="showcreds()" style="margin:auto" >Credits</div>
+		<div id="credd" class="contenta" style="text-align:center">
+			Website Template (Ben Wolfson), GT Logo (Official Georgia Tech Logo), <a href="https://freesvgdesigns.com">SVGs</a>, Heal Mockup (YesYou Studios, San Diego)
+		</div>
+<br/>	
+			<footer class="footer">
+			<div id="particles2"></div>
+			<div class="inner">
+					<img onselectstart="return false" src="/assets/icons/ss.png" alt="Saurab Logo" style="width: 150px;height:150px"><br><br>
+					<!-- <small onselectstart="return false" style="color:white"><a onselectstart="return false" style="font-size:10px">&copy 2021 by Saurab Sirpurkar</a> -->
+			</div>
+		</footer>
+		<script src="/assets/js/particles.min.js"></script>
+		<script src="/assets/js/main.min.js"></script>
+</body>
+</html>
