@@ -53,7 +53,7 @@
         </li>
         </ul>
         </li>
-        <li><a href="#music-generation-unsupervised">Music Generation (Unsupervised)</a><ul>
+        <li><a href="#music-generation-unsupervised">Music Generation (AudioCompose GAN Framework)</a><ul>
         <li><a href="#models-trained">Models Trained</a></li>
         <li><a href="#model-evaluation">Model Evaluation</a><ul>
         <li><a href="#midinet-framework">MidiNet Framework</a></li>
@@ -214,7 +214,7 @@
         </p>
         
         <p>In order to evaluate the performance of our Decision Tree Classifier in terms of whether it overfits or underfits, we visualized the learning curves for training and validation splits over a 5-fold cross validation. From the plot above it can be observed that as the number of training samples increase, the training accuracy decreases but the validation accuracy significantly increases. Both training and validation accuracies are reasonably good, suggesting that our model is not underfitting. Also, it can be seen that the two line curves for training and validation scores have not yet reached a convergence. As a result, if we evaluate them on more number of training samples it is highly likely that the gap between them would decrease reflecting that our model also does not overfit. </p>
-        <h2 id="music-generation-unsupervised-">Music Generation (Unsupervised)</h2>
+        <h2 id="music-generation-unsupervised-">Music Generation (AudioCompose GAN Framework)</h2>
         <p>To generate music, we built a Generative Adversarial Network (GAN) inspired by <a href="https://arxiv.org/abs/1703.10847">MidiNet</a>. 
         Midinet is built on convolution blocks that takes a 2D matrix of notes vs time steps as inputs. To generate music in a continious fashion, Midinet also utilizes information from the notes vs time steps matrix of the previous bar. Additionally, Midinet also takes as input the chord (or background score of the song).  </p>
         <p>The benefit of using Midinet is that they generate a piano roll from the song as a feature. This piano roll  encodes pitch information similar to the pitch histogram used in our best performing classifier.  </p>
@@ -236,6 +236,7 @@
         
         </figure>
         </p>
+        
         
         <h2 id="genre-gan">Genre GAN</h2>
         <p>Our initial run with the default hyperparameters resulted in the loss graph below. As we can see, there seems to be a sharp spike early on in the loss that then flattens out again. This indicates that the GAN had some sort of instability at the initial stages. </p>
