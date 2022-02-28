@@ -1,0 +1,360 @@
+<head>
+    <script async="async" defer="defer" src="https://buttons.github.io/buttons.js"></script>
+
+<link rel="stylesheet" href="mediumish.css">
+</head>
+<body>
+<div class="container">
+    <div class="meta">
+        <div class="image"></div>
+        <div class="info">
+            <h1>Genre-specific Music Generation</h1>
+            <p class="subtitle">Our tale of generating infite music in our favorite styles</p>
+            <div class="author">
+                <div class="authorImage"></div>
+
+                <div class="authorInfo">
+                    <div class="authorName"><a href="https://codepen.io/lucagez">Saurab Sirpurkar</a></div>
+                    <div class="authorSub">Jan 7 <span class="median-divider">·</span> 10 min read</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="article">
+    
+
+        <h1 id="ml-for-music-generation">ML for Music Generation</h1>
+        <h1 id="final-report">Final Report</h1>
+        <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#problem-definition">Problem Definition</a></li>
+        <li><a href="#dataset">Dataset</a><ul>
+        <li><a href="#dataset-creation">Dataset Creation</a></li>
+        <li><a href="#data-preprocessing">Data Preprocessing</a><ul>
+        <li><a href="#normalization">Normalization</a></li>
+        <li><a href="#undersampling">Undersampling</a></li>
+        <li><a href="#oversampling-using-smote">Oversampling using SMOTE</a></li>
+        </ul>
+        </li>
+        <li><a href="#feature-extraction-and-selection">Feature Extraction and Selection</a><ul>
+        <li><a href="#correlation-analysis">Correlation Analysis</a></li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        <li><a href="#methods">Methods</a><ul>
+        <li><a href="#genre-classification-supervised">Genre Classification (Supervised)</a><ul>
+        <li><a href="#models-trained">Models Trained</a></li>
+        <li><a href="#model-evaluation">Model Evaluation</a><ul>
+        <li><a href="#neural-networks">Neural Networks</a></li>
+        <li><a href="#k-nearest-neighbors">k-Nearest Neighbors</a></li>
+        <li><a href="#decision-trees">Decision Trees</a></li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        <li><a href="#music-generation-unsupervised">Music Generation (Unsupervised)</a><ul>
+        <li><a href="#models-trained">Models Trained</a></li>
+        <li><a href="#model-evaluation">Model Evaluation</a><ul>
+        <li><a href="#midinet-framework">MidiNet Framework</a></li>
+        <li><a href="#genre-gan">Genre GAN</a></li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        <li><a href="#results-and-discussion">Results and Discussion</a><ul>
+        <li><a href="#genre-classification-supervised">Genre Classification (Supervised)</a></li>
+        <li><a href="#music-generation-unsupervised">Music Generation (Unsupervised)</a><ul>
+        <li><a href="#challenges">Challenges</a></li>
+        <li><a href="#results">Results</a></li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        <li><a href="#member-contributions">Member Contributions</a></li>
+        <li><a href="#references">References</a></li>
+        <li><a href="#project-inspiration">Project Inspiration</a></li>
+        </ul>
+        <h2 id="introduction">Introduction</h2>
+        <p>Content generation is a growing application of Machine Learning, within which Music Generation is a popular task. In this project, we plan to observe musical features in machine learning context and generate tracks specific to existing genres.  </p>
+        <p>However, music consists of multiple tracks and instruments, and each has its own note sequence or temporal variation, making combination into a single meaningful representation difficult. Musical characteristics are also dependent on genre, so imitating relevant characteristic emotions across genres is challenging.</p>
+        <h2 id="problem-definition">Problem Definition</h2>
+        <p>For this project, our objective is two-fold. One, to characterize music and its styles in the context of machine learning, with the aim of classifying genres, and find the most discriminative features across genres. Two, to generate genre-specific, instrument-only music. We plan to leverage the findings from the former task to aid the latter.</p>
+        <h2 id="dataset">Dataset</h2>
+        <p>We plan to use symbolic representations of music rather than raw audio. Given the polymorphism of representations in music, the deep learning techniques can be adopted across representations <a href="https://arxiv.org/abs/1709.01620">[Briot]</a>. Out of possible symbolic representations, MIDI is a popular choice. It is a technical standard in music that captures rich information about a song such as tempo, time signatures and key changes across multiple instruments (often more than 25). Therefore, we plan to use this representation for our training data. </p>
+        <p align="center" style="margin-left: 10%;">
+        <figure>
+            <center>  <img src="images/MIDIonGarageBand.png" alt="drawing" width="750" style="margin-left:-5vw"/>
+           <figcaption> A Sample MIDI file viewed on GarageBand</figcaption> </center>
+        
+        </figure>
+        </p>
+        
+        <p>Using our dataset, we first plan to identify the best features that discriminate between genres and build a genre classifier using supervised learning techniques on these features. This would help us learn different components that constitute a musical composition and their interaction to develop into a musical style.</p>
+        <h2 id="dataset-creation">Dataset Creation</h2>
+        <p>Our original goal was to use songs that existed in both the Lakh MIDI Dataset <a href="https://colinraffel.com/projects/lmd/">[LMD]</a> and the Million Song Dataset <a href="http://millionsongdataset.com/">[MSD]</a>. This intersection of data is provided on the LMD website and will henceforth be referred to as LMD-matched. With this intersection of 45k songs, we would be able to use low-level features from the MIDI files in LMD and the genre labels in MSD. As we investigated further, we realized that within this intersection of 45k songs, an insignificant portion (200) of them had genre labels. Because this wouldn&#39;t be nearly enough data to accurately classify 21 different genres, we spent a lot of time brainstorming how to get more labels for our data. We eventually discovered the MSD Allmusic Genre Dataset <a href="http://www.ifs.tuwien.ac.at/mir/msd/download.html">[MAGD]</a>, which provides 422k genre labels for songs in MSD. Using this information, we wrote Python scripts to map MIDI files in LMD-matched to their genres as labeled in MAGD, ignoring any songs that had empty labels or were not present in both LMD and MAGD. With this, we ended up with 37k genre-labeled data points. We then stored this information in a CSV file, with each row representing a MIDI file and its features.</p>
+        <h2 id="data-preprocessing">Data Preprocessing</h2>
+        <h2 id="normalization">Normalization</h2>
+        <p>While we observed no missing features or labels for the intersection of LMD-Matched and MAGD, we did see that the ranges of values of the features varied significantly. We realized that it is important to normalize features so that the loss functions of the Machine Learning models can give similar importance to all the features. Therefore, we normalized (z-score normalization) each of the features except for pitch histogram features. The pitch-based features already fell in [0,1], and we did not want to lose the absolute importance of notes for a given song by normalizing them across songs. </p>
+        <p align="center">
+        <figure>
+        <img src="images/genre_graph_non_transparent.png" alt="drawing" width="750" style="margin-left:-5vw"/>
+          <center><figcaption>A bar graph of the frequency of songs labeled with a given genre.</figcaption></center>
+        
+        </figure>
+        </p>
+        
+        <p>From this graph, we made the following observations. </p>
+        <ol>
+        <li><p>We understood that there is a large variance in the number of songs from each genre, with some of the genres having insignificant samples in the dataset. To ensure a good classification, we realised that we need to select genres that have a high significance. To this end, we set a threshold 1000 songs for a genre to be considered as significant enough. Based on this, our final choice of genres were: Pop Rock, Country, Jazz, RnB, Electronic and Latin.</p>
+        </li>
+        <li><p>The Pop Rock genre makes up an overwhelming majority of the labels. We predicted that when trained on this data, our model would simply classify most songs as Pop Rock because according to its training data, Pop Rock is the most likely answer. This prediction was confirmed in our experiments, which are outlined in the <a href="#model-evaluation">Model Evaluation</a> section. To combat this one-class domination, we decided to even out our dataset and re-train our model using imbalance mitigation techniques like undersampling and oversampling. </p>
+        </li>
+        </ol>
+        <h2 id="undersampling">Undersampling</h2>
+        <p>We experimented by decreasing the number of Pop Rock labels in multiple decrements, all the way down to 3,000. Most of these mitigation strategies lead to insignificant improvements in performance. Later, we wanted to test out on a dataset that is perfectly balanced across all genres by including 1170 songs from each genre. This dataset had better results than other undersampled ones, and hence was considered as the main undersampled dataset for our models. </p>
+        <h2 id="oversampling-using-smote">Oversampling using SMOTE</h2>
+        <p>Out of the oversampling techniques we tried, the one that produced the best results was the Synthetic Minority Oversampling Technique <a href="https://www.jair.org/index.php/jair/article/view/10302">[SMOTE]</a>, which oversamples the genres in the minority by repeatedly creating synthetic datapoints using a linear combination of two randomly picked feature vectors from each class. In our case, we oversampled all the genres to 20,581 songs. We felt that SMOTE was most suitable for our situation because our data contains one dominating class and a lot of minority classes. 
+        We realised that if we only undersample, we lose a lot of valuable data and run the risk of making our dataset too small. With SMOTE as a data augmentation technique, we realised that we can balance our dataset without losing too much information in the process as confirmed in our <a href="#results-and-discussion">Results and Discussion</a></p>
+        <p>We also performed Principal Component Analysis via scikit-learn to reduce our features to two and visualized them below. </p>
+        <p align="center">
+        <figure>
+        <img src="images/allPCA.png" alt="drawing" width="850" style="margin-left:-5vw"/>
+          <center><figcaption>PCA visualizations for different versions of the dataset</figcaption></center>
+        </figure>
+        </p>
+        
+        <p>PCA was used on three different modifications of our dataset: (1) original dataset with normalized features, (2) undersampled dataset, and (3) oversampled dataset using SMOTE. Although the visualizations do not point to an obvious distinction between genres, we can observe that PCA visualization on the dataset created using SMOTE provides a better distinction between genres that the original or the undersampled dataset. This motivates us to see better results on the SMOTE version of our dataset than others (we discuss this further in the <a href="#model-evaluation">Model Evaluation</a> section).</p>
+        <h2 id="feature-extraction-and-selection">Feature Extraction and Selection</h2>
+        <p>The features explained below were extracted using the <a href="https://github.com/craffel/pretty-midi">pretty_midi</a>  Python library, which extracts the information directly from the MIDI files. We decided to use these kinds of low-level musical features rather than high-level metadata (such as artist, song title, etc) because this way, we can classify genres based on the specific traits inherent in the actual songs rather than classifying based on who wrote the music. This will provide us with more useful information about the musical distinctions between each genre, which we can then use when building our music generator model.</p>
+        <p>After observing that humans can identify the genre based on the set of instruments used, the pitch levels of the the instruments and the tempo of the music, we started off by identifying note level information across instruments for each of the genres in consideration. We chose to exclude MIDI Note 42 (F#), as it was the most repeated note across all genres. We believe this note&#39;s popularity is due to its presence in G major, one of the most commonly used (and easily learned) keys in modern western music.</p>
+        <p align="center">
+        <figure>
+        <img src="images/note_analysis.png" alt="drawing" width="850" style="margin-left:-5vw"/>
+           <center><figcaption>Analysis on Notes: Values plotted are averaged across songs in the genre</figcaption> </center>
+        </figure>
+        </p>
+        
+        <p>As we can observe from the graphs, the genres do not have much differentiability from raw aggregates of the notes information. So we decided to go with a pitch histogram approach as mentioned in <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.107.9375&amp;rep=rep1&amp;type=pdf">this paper</a>. The authors propose a method to represent the pitch content of music signals is a symbolic form using histograms. They use a multiple-pitch detection algorithm for generating pitch histograms. We extracted these pitch histograms in our dataset and plotted them. </p>
+        <p align="center">
+        <figure>
+        <img src="images/pitch_histograms.png" alt="drawing" width="850" style="margin-left:-5vw"/>
+           <center><figcaption>Pitch histograms averaged across genres</figcaption> </center>
+        </figure>
+        </p>
+        
+        <p>As mentioned in the paper and shown above, these pitch histograms encode better information and can act as good features for the task of genre classification. Along with this, we also extracted some features to encode other key information related to temporal aspects of the song. Our final list of features include pitch histogram, MIDI file resolution, number key signatures, tempo changes, length of the song, and tempo, creating a total of 20 different features.</p>
+        <p>The image below shows the correlation of all the features.</p>
+        <p align="center">
+        <figure>
+        <img src="images/purplecorrelation.png" alt="drawing" width="850" style="margin-left:-5vw"/>
+          <center><figcaption>Correlation between the features used to train our model</figcaption></center>
+        
+        </figure>
+        </p>
+        
+        <h2 id="correlation-analysis">Correlation Analysis</h2>
+        <p>The 12 pitches shown above (in the bottom right portion of the image) are the 12 notes per octave, A, A#, B, C, C#, D, D#, E, F, F#, G and G#. As we can see in the lower right portion, there is a strong correlation between pitches that are 5 semitones (i.e. half-steps, referring to the step that takes a note from A to A#, then A# to B, etc.) apart and 7 semitones apart. This makes sense because these intervals correspond exactly with the concepts of a &quot;perfect fourth&quot; and &quot;perfect fifth&quot; interval in music. These intervals are known to be generally pleasing to the ear, and pairs of notes following these intervals are very commonly used together. Apart from these, we see significant correlation between ts_1 and ts_2 which together specify the time signature of a song. Since they usually take values such as 3/4, 4/4, 6/8 , this correlation is expected. Similarly, we see a slight correlation between number of instruments used and the length of the song (end_time). This is likely because more sophisticated compositions that use more instruments tend to be longer than simpler ones. Apart from these, we see no significant correlations between other pairs of features. </p>
+        <h2 id="methods">Methods</h2>
+        <h2 id="genre-classification-supervised-">Genre Classification (Supervised)</h2>
+        <h2 id="models-trained">Models Trained</h2>
+        <p>We tried various supervised classification techniques in order to determine which was best suited for our data and feature set.</p>
+        <ol>
+        <li><p>SVM model, with One-vs-Rest (OvR) strategy adapted for multiclass classification performed poorly by classifying almost everything as Pop Rock.</p>
+        </li>
+        <li><p>Neural Network with varying amounts of layers (from 1 - 3) and neurons (from 5 - 100). With the original dataset without any sort of balancing techniques, the network achieved a 69% accuracy score by classifying almost everything as Pop Rock. However, the F1 score of 14% paints the real picture here. After undersampling and oversampling the data, we applied a 3 * 10-neuron hidden layer neural network with Adam optimization on these versions of the dataset. With this, we obtained a decent performance of 42% F1 score on SMOTE data and 30% F1 score on undersampled data. </p>
+        </li>
+        <li><p>A kNN model, which performed well and achieved a 69% F1 score on SMOTE data, although it suffered to perform well on the other two versions of the dataset. We adjusted the hyperparameters for each version individually. </p>
+        </li>
+        <li><p>Decision Tree, which performed the best of all five techniques, with the best trial resulting in 75% accuracy and 75% F1 score on SMOTE data. We tried various other data variations like, downsampling the majority class (&quot;Pop Rock&quot;), removing the majority class altogether, or training on the data without any modifications. In all these cases although the Decision Trees we trained usually predicted Pop Rock majorly, their second choice was often the true label. We tuned this model by adjusting parameters such as criterion used for split, max_depth, and max_leaf_nodes.</p>
+        </li>
+        <li><p>Random Forest, which performed similarly to the Decision Tree method but with slightly worse results.</p>
+        </li>
+        </ol>
+        <h2 id="model-evaluation">Model Evaluation</h2>
+        <p>We focus our evaluation and analysis on Neural Networks, kNN and Decision Trees as they had the best results in our study.</p>
+        <h2 id="neural-networks">Neural Networks</h2>
+        <p>We finalized our neural network to have 3 hidden layers with 10 neurons each with Adam optimization, after trying out other architectures and hyperparameters. The image below shows the confusion matrices on three versions of the dataset along with accuracy and F1 scores. </p>
+        <p align="center">
+        <figure>
+        <img src="images/allNN.png" alt="drawing" width="1000" style="margin-left:-5vw"/>
+         <center> <figcaption>Performance of the neural network on original, undersampled and oversampled datasets</figcaption></center>
+        
+        </figure>
+        </p>
+        
+        <p>As we can see from these matrices, the original dataset lead to a huge overfit (69% accuracy and 14% F1 score). But the performance considerably increased when we undersampled the data to 30% F1 score. It raised further when we used it on the SMOTE data, yielding a F1 score of 42%. </p>
+        <h2 id="k-nearest-neighbors">k-Nearest Neighbors</h2>
+        <p>We trained our kNN model on all three versions of dataset and took the most optimal values for n_neighbors for individual versions. These are the confusion matrices and the scores that we obtained:</p>
+        <p align="center">
+        <figure>
+        <img src="images/AllKNN.png" alt="drawing" width="1000" style="margin-left:-5vw"/>
+          <center><figcaption>Performance of kNN on original, undersampled and oversampled datasets</figcaption></center>
+        
+        </figure>
+        </p>
+        
+        <p>We can see that for the leftmost confusion matrix, the model seems to guess Pop Rock for everything and achieves a good accuracy in doing so. In this case, the accuracy is misleading because the model has not actually learned how to discriminate between genres - it just knows that Pop Rock is the most likely answer because the majority of the data it was trained and tested on was examples of Pop Rock. For the second confusion matrix, we can see that the results look slightly better despite the accuracy being lower. Here, we have undersampled the Pop Rock examples. While the model has now learned more about the characteristics of each genre, the lack of data hinders its understanding, and the model cannot form strong and correct connections. These accuracy and F1 scores are more reflective of the model&#39;s actual performance than those in the leftmost confusion matrix because our data here is balanced. For the rightmost confusion matrix, we can see the best results for the kNN model. The use of the oversampling technique both balances the data while also providing the model with a plethora of examples to learn from, thus mitigating the main flaw present in both of the previous models. Interestingly, this model now performs very poorly on Pop Rock music. We believe this could have to do with the quality of our data. Because so many songs were categorized as Pop Rock, it&#39;s possible that the &quot;Pop Rock&quot; genre was a catch-all genre for songs that didn&#39;t fit anywhere else. This would imply that the songs would have wildly different features, which would make it difficult for the model to determine what it means for a song to be Pop Rock.</p>
+        <h2 id="decision-trees">Decision Trees</h2>
+        <p>We trained the Decision Tree on various versions of the dataset (as described above). The resulting confusion matrices are displayed below.</p>
+        <p align="center">
+        <figure>
+        <img src="images/AllDT.png" alt="drawing" width="1000" style="margin-left:-5vw"/>
+          <center><figcaption>Performance of Decision Tree on original, undersampled and oversampled datasets</figcaption></center>
+        
+        </figure>
+        </p>
+        
+        <p>We can very clearly see the improvement as these confusion matrices have more and more examples in the True Positive diagonal. The leftmost confusion matrix represents the results from training the model on the original dataset. We can see that the model guesses Pop Rock for almost everything and achieves a &quot;good&quot; accuracy because the data is mostly Pop Rock, as with the kNN above. The second confusion matrix represents the results for the model being trained on data where we undersampled the Pop Rock genre. We can see that the model was able to learn about other genres better, but the lack of data means that the low F1 score represents our model underfitting the data. Because it has not been provided enough data in its training, the model struggles to find the correct identifying characteristics. The third confusion matrix is the result of training the model on our SMOTE dataset. We can see that here, the model performs very well and is generally able to choose the correct genre. This time, our F1 score is significantly high because we know that the data has been properly balanced with each genre now being equally represented. </p>
+        <p align="center">
+        <img src="images/OverfitPlot.png" alt="drawing" width="350" style="margin-left:-5vw"/>
+          <center><small>Evaluating the learning curve for Decision Tree classifier</small></center>
+        </p>
+        
+        <p>In order to evaluate the performance of our Decision Tree Classifier in terms of whether it overfits or underfits, we visualized the learning curves for training and validation splits over a 5-fold cross validation. From the plot above it can be observed that as the number of training samples increase, the training accuracy decreases but the validation accuracy significantly increases. Both training and validation accuracies are reasonably good, suggesting that our model is not underfitting. Also, it can be seen that the two line curves for training and validation scores have not yet reached a convergence. As a result, if we evaluate them on more number of training samples it is highly likely that the gap between them would decrease reflecting that our model also does not overfit. </p>
+        <h2 id="music-generation-unsupervised-">Music Generation (Unsupervised)</h2>
+        <p>To generate music, we built a Generative Adversarial Network (GAN) inspired by <a href="https://arxiv.org/abs/1703.10847">MidiNet</a>. 
+        Midinet is built on convolution blocks that takes a 2D matrix of notes vs time steps as inputs. To generate music in a continious fashion, Midinet also utilizes information from the notes vs time steps matrix of the previous bar. Additionally, Midinet also takes as input the chord (or background score of the song).  </p>
+        <p>The benefit of using Midinet is that they generate a piano roll from the song as a feature. This piano roll  encodes pitch information similar to the pitch histogram used in our best performing classifier.  </p>
+        <p>We tweaked the Midinet architecture to take advantage of the Genre classification we perfomed earlier. We pass a one hot encoded vector of genre information along with the random noise and previous time step for generating a new bar of music.  </p>
+        <h2 id="models-trained">Models Trained</h2>
+        <p>We trained various versions of the framework described above in addition to training the <a href="https://arxiv.org/abs/1703.10847">[MidiNet]</a> architecture itself as a basis for comparison.</p>
+
+       <p> 1. Deep Convolutional Generative Adversarial Networks with the MidiNet framework. For this, we used approximately 4,000 songs from the dataset provided by MidiNet, a batch size of 36, and 20 epochs. The features used were the melody (an nx1x16x128 matrix representing pianorolls. n is the number of songs, 16 is the number beats in each measure of music, and 128 is the total number of pitches), the underlying chord progression, and random noise. The chord conditions were passed in with the random noise during the discriminator training process. We also experimented with training the framework for a larger number of epochs. Doing so, we observed that it lead to overtraining of the model and so restricted the number of traning epochs to 20.</p>
+
+       <p>   2. To connect the first half of our project on Genre Classification with music generation, we created our own custom GAN on top of the MIDINet framework. The aim of this model was to generate genre specific music. To do so we again use the melody features (they have a similar dimension as to what we used in MIDINet GAN) to capture the main note sequence in the form of audio piano rolls, one hot encoded genre label information, and random noise. It should be noted that we did not consider the chord progressions for Genre MIDINet as we wanted our model to correctly discriminate between the main note sequences used across different genres. We used our subset of 6,000 lmd-matched songs for training. The model was trained for 50 epochs. We restricted our training data to contain MIDI files belonging to the 13 genres (in terms of frequency) in our dataset.</p>
+
+        <h2 id="model-evaluation">Model Evaluation</h2>
+        <h2 id="midinet-framework">MidiNet framework</h2>
+        <p>As we can see in the loss graph below, the GAN proposed by <a href="https://arxiv.org/abs/1703.10847">[MidiNet]</a> that we trained has both the loss for the discriminator and the loss for the generator converge. We used this graph as a basis of comparison for our loss graphs. From this, we expected spiky loss lines and for the discriminator to have a lower overall loss than the GAN. We also note that in this loss graph, but lines seem to spike during the same iterations, directly showing the relationship between the discriminator and the generator.</p>
+        <p align="center">
+        <figure>
+        <img src="images/midnet_loss.JPG" alt="drawing" width="750" style="margin-left:-5vw"/>
+           <center><figcaption>The loss resulting from training the MidiNet GAN</figcaption> </center>
+        
+        </figure>
+        </p>
+        
+        <h2 id="genre-gan">Genre GAN</h2>
+        <p>Our initial run with the default hyperparameters resulted in the loss graph below. As we can see, there seems to be a sharp spike early on in the loss that then flattens out again. This indicates that the GAN had some sort of instability at the initial stages. </p>
+        <p align="center">
+        <figure>
+        <img src="images/genregan_loss1.JPG" alt="drawing" width="750" style="margin-left:-5vw"/>
+           <center><figcaption>The loss resulting from training our genre GAN</figcaption> </center>
+        
+        </figure>
+        </p>
+        
+        <p>We solved this by training the discrimniator alone for a few iterations and then training both (discriminator and generator) together. We then tuned our hyperparameters to allow the model to train for 50 epochs. As shown by the graph below, the loss for the discriminator seems to converge, but the loss for the generator follows an increasing pattern. We believe that this is due to overtraining the model and the degradation of our data as the GAN continues to alter it as it trains. </p>
+        <p align="center">
+        <figure>
+        <img src="images/genregan_loss3.JPG" alt="drawing" width="750" style="margin-left:-5vw"/>
+           <center><figcaption>The loss resulting from training our genre GAN</figcaption> </center>
+        
+        </figure>
+        </p>
+        
+        <p>This time, we reduced our number of epochs to 20. We can see that towards the beginning of this chart, the losses stay relatively low and then vary wildly in the latter section. However, we can see that the lower extremes of both loss lines display a downward pattern while the upper extremes increase. Again, this is likely caused by our discriminator learning too quickly. In the game-playing format of the GANs, the discriminator learning too quickly can mean less opportunities for the generator to learn, thus causing its loss to increase rather than converge.</p>
+        <p align="center">
+        <figure>
+        <img src="images/genregan_loss2.JPG" alt="drawing" width="750" style="margin-left:-5vw"/>
+           <center><figcaption>The loss resulting from training our genre GAN</figcaption> </center>
+        </figure>
+        </p>
+        
+        <p>While training our most stable GAN, we also generated a fixed random noise that we used to generate an audio sample at the end of every epoch. We used this output to monitor the training progression of the generator network. As you can see from the image below, the output is very random during the early stages, but as we train for more epochs, we get more fine grained results on pitches. </p>
+        <p align="center">
+        <figure>
+        <img src="images/gan_training_output.png" alt="drawing" width="750" style="margin-left:-5vw"/>
+           <center><figcaption>Audio samples generated from a fixed random noise</figcaption> </center>
+        </figure>
+        </p>
+        
+        <h2 id="results-and-discussion">Results and Discussion</h2>
+        <h2 id="genre-classification-supervised-">Genre Classification (Supervised)</h2>
+        <p>Our most successful classifier was our Decision Tree when trained on data that was balanced and oversampled with SMOTE. This classifier achieved an accuracy of 75% and an F1 score of 75%, indicating that the results are fairly reliable. Not only does this classifier correctly classify genres, it does not often confuse one genre for another. Of the model&#39;s misclassified genres, the two most common mistakes were predicting Electronic or Latin when the song was actually Pop Rock. This makes sense because Electronic, Latin, and Pop Rock music are all characterized by energetic tempos and strong, rhythmic beats. The two least common mistakes were predicting Country or Electronic for a Jazz song. This once again makes sense because, of the six genres we chose to classify, Jazz has the most unique set of instruments, rhythms, tempo, and notes used. This uniqueness means that the features of Jazz are very easy to distinguish from other genres for both humans and our model.</p>
+        <p>These results are extremely useful to us. Because our Genre Classifier was trained only on features representing characteristics of the music itself, we now have a very strong understanding of which features to use for our music generation model. Through our work on this model and the results we obtained, we have discovered that data relating to which pitches are used together and how often they are used (as shown in our pitch histograms) in addition to data about the instruments used are integral parts of what makes each genre unique. Using this knowledge of features and their variance across genres, we will build a music generation model that produces genre-specific instrumental music.</p>
+        <h2 id="music-generation-unsupervised-">Music Generation (Unsupervised)</h2>
+        <h2 id="challenges">Challenges</h2>
+        <p>To train our GAN we first had to extract relevant features from our MIDI dataset that would help generate music. To extract these features, we were inspired by the data curation process used in <a href="https://arxiv.org/abs/1703.10847">MIDINet</a>. The very first challenge was that the feature extractor used by MIDINet did not use raw MIDI files as an input to create the musical features. They instead depended on melody and chord matrices directly generated using <a href="https://www.hooktheory.com/theorytab">TheoryTab</a>. As there was no intersection between our subset of lmd-matched MIDI files and the TheoryTab dataset we could not directly use their script to get the musical features. The next step was to implement the pre-processing suggested in the MIDINet paper directly. This pre-processing was quite involved as we had to perform operations like segmenting a MIDI into bars, shifting notes to two octaves, and generating pianorolls (suggested steps to ensure stability of GAN). We explored the pretty-midi library to help us with this processing but it does not offer a functionality to segment a MIDI. As a workaround we came across <a href="https://salu133445.github.io/musegan/">MuseGAN</a>, which is an extension of MIDINet. Unlike MIDINet their data processing script supports MIDI files using a music processing python library called pypianoroll. We tweaked the script to get musical feature representations (essentially pianorolls) appropriate for the GAN. After playing around with it for a while we realized that the script did not work for our input dataset. One possible reason we thought could have led to this issue is that our MIDI files are not in the format required to be processed by the pypianoroll library. The library is suited for multi-track audio files and our files consist of standard tracks or single-track piano rolls. In the end, we resorted to using the genre information along with single-track piano rolls obtained using pretty-midi to help our GAN generate genre specific audio. </p>
+        <h2 id="results">Results</h2>
+        <p>Through our generated MIDI files, we can observe that for both the GAN architectures the audio is pleasing, i.e., the note sequences are not clashing and are coherent to some extent. Along with this, it can be seen that the audio files generated by MIDINet GAN consists of prolonged notes or a bunch of notes being played together at the same time. This can be attributed to the fact that we made use of chord progressions while training the MIDINet GAN. Since chords are a group of notes that are played together in the background, the MIDINet GAN framework picked up on these learnings and generated music accordingly. On the other hand, the audio files generated by Genre MIDINet, consist of single note sequences due to the absence of a background track that the chords provide.  </p>
+        <p>Because there aren&#39;t many technical ways to evaluate how pleasing music is to a human ear, we decided to utilize qualitative data to evaluate our results for the Genre GAN. The consensus was that while some of the songs were melodic, many of them had an unsettling undertone, as if they were meant to be the soundtrack for a horror movie. We believe this is due to the minor keys being used by the generator in addition to the fast tempo.</p>
+        <p>Below are links to three of our generated audio samples:</p>
+        
+        <p>1.Easy Listening genre: </p>
+        <audio controls>
+            <source src="horse.ogg" type="audio/ogg">
+            <source src="music/easylisten.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+          </audio>
+        
+       <p>2. Pop Rock genre: </p> 
+       
+       <audio controls>
+        <source src="horse.ogg" type="audio/ogg">
+        <source src="music/pop_rock.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>
+
+       <p>3. Latin genre: </p>
+       <audio controls>
+        <source src="horse.ogg" type="audio/ogg">
+        <source src="music/latin.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>
+
+        <p>The following are visualizations of some of the samples generated. </p>
+        <p align="center">
+        <figure>
+        <img src="images/chords.png" alt="drawing" style="margin-left:-9vw"/>
+           <center><figcaption>Audio files generated with random noise and chords (MIDINet)</figcaption> </center>
+        </figure>
+        </p>
+        
+        <p align="center">
+        <figure>
+        <img src="images/pop_rock.png" alt="drawing" style="margin-left:-5vw"/>
+           <center><figcaption>Audio files generated with random noise and Pop Rock as Genre (Genre MIDINet)</figcaption> </center>
+        </figure>
+        </p>
+        
+        <p align="center">
+        <figure>
+        <img src="images/country.png" alt="drawing" style="margin-left:-5vw"/>
+           <center><figcaption>Audio files generated with random noise and Country as Genre (Genre MIDINet)</figcaption> </center>
+        </figure>
+        </p>
+        
+        <p align="center">
+        <figure>
+        <img src="images/electronic.png" alt="drawing" style="margin-left:-5vw"/>
+           <center><figcaption>Audio files generated with random noise and Electronic as Genre (Genre MIDINet)</figcaption> </center>
+        </figure>
+        </p>
+
+
+<!--  -->
+<!-- 
+
+
+
+    
+ -->
+ <!-- 
+
+  -->
+
+
+
+
+
+
+
+
+
+    </main>
+</div>
+</body>
