@@ -1,0 +1,87 @@
+<head>
+    <link rel="stylesheet" href="../assets/css/articleIndex.css">
+    <link rel="stylesheet" href="../assets/css/articleCoreElems.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<article>
+    <h1>My experience implementing Slotted Aloha with CRC</h1>
+
+    <p>Check out the source code for this project on GitHub <a href="https://github.com/ssaurab/Network-Protocols-Simulation/tree/master/SlottedAloha%20with%20CRC" target="_blank"><i class="fa fa-github" style="font-size:36px"></i></a></p>
+
+    <h2>Basic Principles behind Slotted Aloha</h2>
+        <p>
+            Slotted Aloha is a basic Random Access Protocol that aims to make channel sharing efficient. One of the main challenges with channel sharing is responding to collisions. Naively retransmitting right away would only lead to further collisions. Therefore, someone has to take a step backwards. The slotted Aloha ensures this through randomization of who gets to retransmit in the subsequent slots. Each node that wants to retransmit in the slot following a collision slot choses to defer its retransmission with a fixed probability p. Overall, it can be proved that the total channel usage is 1/e, which is twice the efficiency of regular ALOHA protocol.
+        </p>
+    <h2>Implementation of cross-node Time Sync and Collision Detection</h2>
+        <p>
+            Ensuring all the nodes in the are on the same page (same window) is important to avoid other types of collisions like colliding with the tail of a previous window etc. Therefore, maintaining all the nodes in sync is important. It is also a challenging task because cross-machine time-sync is a problem that has no perfect solution and is an actively researched area in the CS community.  
+        </p>
+        <p>
+            One solution for this is to have a semaphore shared across node-thread and a driver thread that initiates the next transmission round only after ensuring all the packets in the previous round are fully transmitted. However, for the sake of simplicity, in our project we chose to emulate the nodes by looping through them in a single thread running the loop. This also makes the collision detection portion of Slotted Aloha easier. As a future work, it would be interesting to implement senders across different threads (or different VMs) and observe the issue of out-of-sync windows etc.    
+        </p>
+        <h2>Cyclic Redundancy Check (CRC) </h2>
+            <p>
+                Cyclic redundancy check is a link-layer error detection scheme that helps detect any bit-level mutations in the received packets. It is a check that is simple to implement across network hardware (switches, routers and endsystems etc.) and catches most commonly occurring bit errors.
+            </p>
+        <h3>The Math behind CRC</h3>
+            <p>
+                If <code>M</code> is the message that the sender wants to transmit, it choses to append another pre-determined string <code>C</code> of <code>c</code> bits such that this bitset becomes divisible by generator G. i.e. 
+                <blockquote>
+                    <p>
+                        <span> M.C = 0 mod G </span><br/>
+                        <span>(where '.' indicates the append operation on bitsets)</span>
+                    </p>
+                </blockquote>
+
+
+                <p>
+                    The actual working of CRC depends on a polynomial generator and a cyclic procedure to find the final reminder as shown in these steps below. 
+                </p>
+                <h4>Computing the reminder to append</h4>
+                <pre style="white-space: pre;">
+11010011101100 000 &lt;--- input right padded by 3 bits
+1011               &lt;--- divisor
+01100011101100 000 &lt;--- result (note the first four bits are the XOR with the divisor beneath, the rest of the bits are unchanged)
+    1011              &lt;--- divisor ...
+00111011101100 000
+    1011
+00010111101100 000
+    1011
+00000001101100 000 &lt;--- note that the divisor moves over to align with the next 1 in the dividend (since quotient for that step was zero)
+        1011             (in other words, it doesn't necessarily move one bit per iteration)
+00000000110100 000
+        1011
+00000000011000 000
+            1011
+00000000001110 000
+            1011
+00000000000101 000
+            101 1
+-----------------
+00000000000000 100 &lt;--- remainder (3 bits).  Division algorithm stops here as dividend is equal to zero.
+                </pre>
+                <h4>Error detection: Ensuring that the reminder is zero</h4>
+                <p>
+                    The receiver uses the same generator to check if the message is divisible by it. From the math above, we see that if there are no bit errors, the final code is divisible by the generator G. An example of this run is in the block below:
+                </p>
+<pre>
+                11010011101100 100 &lt;--- input with check value
+1011               &lt;--- divisor
+01100011101100 100 &lt;--- result
+ 1011              &lt;--- divisor ...
+00111011101100 100
+
+......
+
+00000000001110 100
+          1011
+00000000000101 100
+           101 1
+------------------
+00000000000000 000 &lt;--- remainder
+</pre>
+<p>
+In this example, as the final reminder is a zero, the message is treated as uncorrupted. 
+            </p>
+</article>

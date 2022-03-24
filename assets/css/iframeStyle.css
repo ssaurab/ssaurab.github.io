@@ -1,0 +1,6 @@
+iframe {
+    width: 80%;
+    height: max-content;
+    border: 0;
+    float: left;
+}
