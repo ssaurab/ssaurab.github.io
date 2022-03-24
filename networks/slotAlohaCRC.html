@@ -15,14 +15,14 @@
         </p>
     <h2>Implementation of cross-node Time Sync and Collision Detection</h2>
         <p>
-            Ensuring all the nodes in the are on the same page (same window) is important to avoid other types of collisions like colliding with the tail of a previous window etc. Therefore, maintaining all the nodes in sync is important. It is also a challenging task because cross-machine time-sync is a problem that has no perfect solution and is an actively researched area in the CS community.  
+            Ensuring all the nodes in the are on the same page (same window) is important to avoid other types of issues like packets colliding with the tail of a previous window etc. Therefore, maintaining all the nodes in sync is important. It is also a challenging task because cross-machine time-sync is a problem that has no perfect solution and is an actively researched area in the CS community.  
         </p>
         <p>
-            One solution for this is to have a semaphore shared across node-thread and a driver thread that initiates the next transmission round only after ensuring all the packets in the previous round are fully transmitted. However, for the sake of simplicity, in our project we chose to emulate the nodes by looping through them in a single thread running the loop. This also makes the collision detection portion of Slotted Aloha easier. As a future work, it would be interesting to implement senders across different threads (or different VMs) and observe the issue of out-of-sync windows etc.    
+            One solution for this is to have a semaphore shared across node-thread and a driver thread that initiates the next transmission round only after ensuring all the packets in the previous round are fully transmitted. However, for the sake of simplicity, in our project, we chose to emulate the nodes by looping through them in a single thread running a loop - each iteration emulates a sender. This also makes the collision detection portion of Slotted Aloha easier. As a future work, it would be interesting to implement senders across different threads (or different VMs) and observe issues such as out-of-sync windows etc.    
         </p>
         <h2>Cyclic Redundancy Check (CRC) </h2>
             <p>
-                Cyclic redundancy check is a link-layer error detection scheme that helps detect any bit-level mutations in the received packets. It is a check that is simple to implement across network hardware (switches, routers and endsystems etc.) and catches most commonly occurring bit errors.
+                Cyclic redundancy check is a link-layer error detection scheme that helps detect any bit-level mutations in the received packets. It is a check that is simple to implement across network hardware (switches, routers and end-systems etc.) and catches most commonly occurring bit errors.
             </p>
         <h3>The Math behind CRC</h3>
             <p>
@@ -30,13 +30,13 @@
                 <blockquote>
                     <p>
                         <span> M.C = 0 mod G </span><br/>
-                        <span>(where '.' indicates the append operation on bitsets)</span>
+                        
                     </p>
                 </blockquote>
 
-
+                <p>(where '.' indicates the append operation on bitsets)</p>
                 <p>
-                    The actual working of CRC depends on a polynomial generator and a cyclic procedure to find the final reminder as shown in these steps below. 
+                    The actual working of CRC depends on a polynomial generator and a cyclic procedure to find the final reminder as shown in the steps below which considers <span class="nowrap"><i>x</i><sup>3</sup> + <i>x</i> + 1</span> as the generator polynomial. 
                 </p>
                 <h4>Computing the reminder to append</h4>
                 <pre style="white-space: pre;">
@@ -84,4 +84,5 @@
 <p>
 In this example, as the final reminder is a zero, the message is treated as uncorrupted. 
             </p>
+            <p>Source of examples: Wikipedia</p>
 </article>

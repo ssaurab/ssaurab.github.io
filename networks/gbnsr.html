@@ -10,7 +10,7 @@
     <p>Check out the source code for this project on GitHub <a href="https://github.com/ssaurab/Network-Protocols-Simulation/tree/master/GoBackN%20and%20SR%20Protocols" target="_blank"><i class="fa fa-github" style="font-size:36px"></i></a></p>
 
     <p>Go-Back-N lets senders transmit multiple packets in succession, without the need to wait for
-       the ACKs of the previous packets. At a given time, a set number of packets that are 
+       the ACKs of the previous packets. At a given time, a set number of packets (window size) that are 
        transmitted are allowed to be unacknowledged. The key advantage of Go-Back-N protocol over
         Stop-and-wait protocol is an increased overall transfer rate (given the medium is enough reliable). 
     </p>
@@ -50,7 +50,11 @@
     
 
     <p>
-      We use a thread that generates packets periodically (based on the above rate) and stores them in a buffer used by the sender’s protocol. The maximum size of this sender transmission buffer is given by the command-line parameter, <code>MAX_BUFFER_SIZE</code>. A newly generated packet will be dropped if the Buffer is full. A sequence number is assigned ONLY if the packet is added to the buffer.
+      We use a thread that generates packets periodically (based on the above rate) and stores them in a buffer used by the sender’s protocol. The maximum size of this sender transmission buffer is given by the command-line parameter, <code>MAX_BUFFER_SIZE</code>. A newly generated packet will be dropped if this Buffer is full. A sequence number is assigned ONLY if the packet is added to the buffer.
+    </p>
+
+    <p>
+      Now, let us dive into some interesting aspects of the implementation.
     </p>
 
     <h2 id="Timeout Handling">Handling Timeouts of each Packet</h2>
@@ -103,24 +107,24 @@
 <p>I realized that it is possible to reuse portions of the client and server code from Go-Back-N when implementing Selective Repeat algorithm. For this, it was crucial to identify the similarities and differences between these protocols. The basic functionalities of server - send packets regularly, wait for their ACK until timeout and move the window reflecting the ACKs received - are roughly the same. Similarly, on the client side, listening for packets and randomly marking a few as corrupted/dropped remains the same. </p>
 <blockquote>
   <p>
-    The main difference between ARQ these protocols is, in Selective Repeat, the receiver buffers the out-of-order packets until all the packets in the window arrive before releasing them to the higher layer. Moreover, the sender only retransmits the unACKed packets in the window.
+    The main difference between these ARQ protocols is, in Selective Repeat, the receiver buffers the out-of-order packets until all the packets in the window arrive before releasing them to the higher layer. Moreover, the sender only retransmits the unACKed packets in the window.
   </p>
 </blockquote>
   
-<h2 id="HowInTCP">So how does TCP do ARQ?</h2>
-<p>We know that TCP uses the same window mechanism to also perform <em>flow and congestion</em> control. However, the actual implementation of ARQ is different from either SR or GBN, and is named <code>Fast Retransmit</code>.</p>
+<h2 id="HowInTCP">So finally, how does TCP do ARQ?</h2>
+<p>We know that TCP uses a similar window mechanism in its ARQ implementation. This is the same window that is also used to also perform <em>flow and congestion</em> control. However, the actual implementation of ARQ is different from either SR or GBN, and is named <code>Fast Retransmit</code>.</p>
 <blockquote>
   <p>
-      TCP retransmissions happen similar to Selective Repeat in that the sender only retransmits a single packet upon detecting loss. However, there are two loss detection techniques in place. A milder loss is one where three duplicate ACKs are detected. Since the modern day networks are very reliable except when there is congestion, the occurrence of a timeout indicates that there is severe congestion. In such cases, the TCP drastically decreases its window size and starts retransmitting slowly picking up speed as more packets reach successfully.
+      TCP retransmissions happen similar to Selective Repeat in that the sender only retransmits a single packet upon detecting loss. However, there are two loss detection techniques in place. A milder loss is one where three duplicate ACKs are detected. Since the modern day networks are very reliable except when there is congestion, the other loss detection trigger, the occurrence of a timeout indicates that there is severe congestion. In such cases, the TCP drastically decreases its window size and starts retransmitting slowly picking up speed as more packets reach successfully.
   </p>
 </blockquote>
 <hr/><hr/><hr/><hr/><hr/>
-
-
+<!-- 
 
     <p>JavaScript has never had any official solution for distributing
     packages, and every web platform (Rails, Django etc) has their own idea
-    of how to structure and package JavaScript. In the last few years NPM
+    of how to structure and 
+package JavaScript. In the last few years NPM
     has started becoming the canonical way of distribution, with Webpack as
     the build system, but there’s no way to load NPM packages in the browser
     without a server-side component.</p>
@@ -381,6 +385,6 @@
     custom approach. In our SystemJS-prototype we ended up using just a
     fraction of SystemJS, reinventing parts of it, and monkey-patching
     various functions. That’s not a criticism of SystemJS itself, but a sign
-    that it hasn’t been designed for our use case.</p>
+    that it hasn’t been designed for our use case.</p> -->
 
             </article>

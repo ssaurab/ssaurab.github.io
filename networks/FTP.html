@@ -6,4 +6,25 @@
 </head>
 <article>
     
+    <h1>My experience implementing File Transfer Protocol in Python</h1>
+    
+    <p>
+        File transfer protocol is an application-layer protocol used to transfer files between two systems in a network. Being one of the first file-transfer protocols ever, it does not take security concerns into account and by default, the communication is considered insecure. Apart from file transfer, FTP also allows other file operations such as copy, move and delete. Thus, in many ways, it falls behind its successors like FTPS and SSH, but is an interesting protocol to implement when learning about Computer Networks. 
+    </p>
+    <p>
+        Interestingly, each FTP connection uses two ports, usually # 20 and # 21, for data and command/control respectively. In my project, I emulated something similar using two sockets to achieve a similar 'separation of concerns' model.
+    </p>
+
+
+    <hr/>
+    <hr/>
+
+    <hr/>
+    <hr/>
+    <hr/>
+    <p>
+        Guess the first file that I transferred as soon as the protocol started working? 
+    </p>
+    <p style="text-align:center;"><img src="./ftp_file.png" alt="first_file_on_ftp"></p>
+    <p>This file of course.</p>
 </article>
