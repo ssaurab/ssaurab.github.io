@@ -95,8 +95,8 @@ while(tt- a[lastack+1]<= timeout && lastack != MAX_PACKETS-1)
 </div>
 
 <p>This piece of code compares the current time <code>tt</code> with the time when the next
-  expected packet to be received was sent. If it exceeds this time limit, it immediately transmits
-  the next packet and waits for a fixed duration for the cumulative ACK to come back as expected.
+  expected ACK can be last received. If it doesn't exceed this time limit, it immediately transmits
+  the next packet and waits for a fixed duration for the cumulative ACK to come back as expected. This way, both the packet generation rate and the timeout can be handled in a single loop.
 </p>
 <blockquote>
   <p>If the receiver receives a packet out of order, it just discards it in GBN protocol. This is because the sender retransmits all the packets starting from the last packet. However, since there are dynamic routing effects, the receiver might falsely treat the packets that took a longer route as lost. This is a drawback of GBN as it assumes that the packets travel in first come first serve order.</p>
