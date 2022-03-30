@@ -99,7 +99,7 @@ while(tt- a[lastack+1]<= timeout && lastack != MAX_PACKETS-1)
   the next packet and waits for a fixed duration for the cumulative ACK to come back as expected. This way, both the packet generation rate and the timeout can be handled in a single loop.
 </p>
 <blockquote>
-  <p>If the receiver receives a packet out of order, it just discards it in GBN protocol. This is because the sender retransmits all the packets starting from the last packet. However, since there are dynamic routing effects, the receiver might falsely treat the packets that took a longer route as lost. This is a drawback of GBN as it assumes that the packets travel in first come first serve order.</p>
+  <p>If the receiver receives a packet out of order, it just discards it in GBN protocol. This is because the sender retransmits all the packets starting from the last packet. However, since there are dynamic routing effects, the receiver might falsely treat the packets that took a longer route as lost. This is a drawback of GBN as it assumes that the packets always travel in a first come first serve order.</p>
 </blockquote>
 
 <h2 id="GBNvSR_Differences">Differences between Selective-Repeat and Go-Back-N</h2>
