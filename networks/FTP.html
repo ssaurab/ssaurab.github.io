@@ -16,6 +16,7 @@
         Interestingly, each FTP connection uses two ports, usually # 20 and # 21, for data and command/control respectively. In my project, I emulated something similar using two sockets to achieve a similar 'separation of concerns' model.
     </p>
     <h3>FTP commands supported</h3>
+    <p>
     <ol>
         <li>NLIST - Returns a list of file names in a specified directory</li>
         <li>CWD - Change working directory</li>
@@ -23,6 +24,7 @@
         <li>STOR - Accept the data and to store the data as a file at the server site</li>
 
     </ol>
+</p>
     
 
     <h3>Implementing ls-like FTP command NLIST</h3>
@@ -81,9 +83,10 @@ else:
     string = "invalid directory name"
     connectionSocket.send(string.encode())
 </pre>
+<p>In a similar way, CWD, RETR and STOR commands were implemented. It is interesting to take a look at their implementation in the source code as they affect server's <strong>actual</strong> file system, and not an emulated one.</p>
 
     <p>
-        .. and this is the obvious first file to transfer once the protocol was implemented. 
-    </p>
+        .. and finally testing with the obvious first file to transfer ..
     <p style="text-align:center;"><img src="./ftp_file.png" alt="first_file_on_ftp"></p>
+    <p>Success!</p>
 </article>
