@@ -5,15 +5,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <article>
-    <h1>My experience prototyping large networks using Mininet</h1>
+    <h1>My experience prototyping network topologies using Mininet</h1>
     <h2>But what is 'Mininet'?</h2>
     <p>
         Mininet is a software emulator to prototype a network of any size on a single machine. It allows users to simulate a network topoloy through code. For this project, I used the Python API of the software, although it is possible to find it in C++ and Java versions as well. You can find the Python API documentation here <a href="https://github.com/mininet/mininet/wiki/Introduction-to-Mininet#creating" target ="_blank">here</a>.
     </p>
+    <h2>Constructing New Topologies</h2>
+  <p>  It is super straightforward to construct new topologies in mininet. Each link, router and host has a one-liner syntax that can take arguments for various properties. For example, a host can be added using this simple two-liner:</p>
+
+<pre>
+hostConfig = {'cpu': cpu}
+h1 = self.addHost('h1', **hostConfig)
+</pre>
+<p>
+Similarly, a link can be added between two switches using this two-liner:
+</p>
+<pre>
+linkConfig1 = {'bw': 10, 'delay': '6ms', 'loss': 3, 'max_queue_size': max_queue_size }
+self.addLink(s1, s2, **linkConfig1)
+</pre>
+<p>
+Following a similar syntax, we define the following topologies:
+</p>
+    <p style="text-align:center;"><img src="./mininet_p10.png" alt="topo1">A Simple topology</p>
+    
+    <p style="text-align:center;"><img src="./mininet_p11.png" alt="topo2">A Complex topology</p>
+    
+    <!-- <h2>Playing with Link Latency</h2>
     <p>
-        The first of three projects using Mininet deals with constructing a small topology and observing
+        The first of three projects using Mininet deals with constructing a small topology and playing aroudn with the bandwidth and latency characteristics of each of the links in the topology.  
+    </p> -->
+    <h2>Playing with Bandwidth Argument</h2>
+    <p>
+        Since we have two topologies, now it is time to play around with the link arguments to see how network characteristics respond to our changes. We first begin by playing with <code>bw</code> argument in the link configuration as shown in the above code. Changing its value from 10 to 50 changes the generated transfer rate graph between sender and receiver as follows:
     </p>
-    <p style="text-align:center;"><img src="./mininet_p10.png" alt="topo1"></p>
-    <p style="text-align:center;"><img src="./mininet_p11.png" alt="topo2"></p>
+    <p style="text-align:center;"><img src="./mininet_p02.png" alt="rate"></p>
     <p style="text-align:center;"><img src="./mininet_p12.png" alt="tx_rates"></p>
+   
+    <p>
+        It is cool to see our changes are accurately reflected in the simulated topologies and which would mean that the possibilities for such experimentation are endless. Let us observe how the simulated congestion-window changes throughout the transmission. 
+    </p>
+
+    <p style="text-align:center;"><img src="./mininet_p01.png" alt="cwnd"></p>
+    <p>
+        As we can see, the graph clearly follows TCP cubic (with a multiplicative decrease factor close to 0.7) behavior often hitting the bandwidth limit before running into 3dup ACKs. This closeness of this graph to real-life TCP CUBIC graphs depicts the accuracy of Mininet emulation on various levels of abstraction, proving that it is a strong tool to emulate various network phenomenon. 
+    </p>
+    <!-- <p style="text-align:center;"><img src="./mininet_p03.png" alt="newrate"></p> -->
 </article>

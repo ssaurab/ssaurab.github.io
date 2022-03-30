@@ -21,7 +21,7 @@
        in the companion website of Kurose Ross book. You can adjust the window size and make the packets drop manually here to see how the GBN scheme adjusts
        its next transmissions.
     </p>
-    <p style="text-align:center;"> <img src="GBNAnimation.png" alt="GBN_Animation" style="width: 60%;"> </p>
+    <p style="text-align:center;"> <img src="GBNAnimation.png" alt="GBN_Animation" style="width: 60%;"> <br/><span>Go-Back-N Animation with custom control to kill packets</span></p>
 <p>
     Now, let us dive into the C++ implementation of this protocol to learn more about the nuances behind it. 
     First, we need to understand the parameters that we can set for this experiment to understand the factors 
@@ -61,36 +61,35 @@
 <div class="language-javascript highlighter-coderay">
   <div class="CodeRay">
     <pre>
-    while(tt- a[lastack+1]<= timeout && lastack != MAX_PACKETS-1)
-		{  
-			memset(buffer, '\0', 32);
-			int nim = recvfrom(sockfd, (char *)buffer, 32, 
-					MSG_DONTWAIT, (struct sockaddr *) &servaddr, 
-					&len);
-			int nom = stooi();
+while(tt- a[lastack+1]<= timeout && lastack != MAX_PACKETS-1)
+{  
+    memset(buffer, '\0', 32);
+    int nim = recvfrom(sockfd, (char *)buffer, 32, 
+        MSG_DONTWAIT, (struct sockaddr *) &servaddr, 
+        &len);
+    int nom = stooi();
 
-			if(nom != lastack){
-				if(nim != -1)
-				{	
-				lastack = nom;
-				int r = lastack;
-				lastack = nom;
-				cout << "lastack moved to " << nom << endl;
-				while(++r <= lastack)
-				{
-				pthread_mutex_lock(&lockt);
-				for(int i = 0; i < maxbuffersize; i++)
-				{
-					if(currbufindex[i] == r)
-					{
-						currbufindex[i] = -1;
-						bufferavail[i] = -1;
-					}
-				}
-				pthread_mutex_unlock(&lockt);
-			}MSG_DONTWAIT
+    if(nom != lastack){
+        if(nim != -1){	
+          lastack = nom;
+          int r = lastack;
+          lastack = nom;
+          cout << "lastack moved to " << nom << endl;
+          while(++r <= lastack)
+        {
+        pthread_mutex_lock(&lockt);
+        for(int i = 0; i < maxbuffersize; i++)
+        {
+          if(currbufindex[i] == r)
+          {
+            currbufindex[i] = -1;
+            bufferavail[i] = -1;
+          }
         }
-      }
+        pthread_mutex_unlock(&lockt);
+      }MSG_DONTWAIT
+        }
+    }
     </pre>
   </div>
 </div>
