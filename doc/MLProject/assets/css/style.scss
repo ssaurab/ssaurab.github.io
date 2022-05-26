@@ -1,0 +1,23 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.page-header {
+    background-image: linear-gradient(120deg, #231942, #E0B1CB);
+}
+
+.main-content {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #413768;
+    }
+}
+
+a {
+    color: #5E548E;
+}

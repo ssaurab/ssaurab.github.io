@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        <link rel="stylesheet" href="../assets/css/articleIndex.css">
+        <link rel="stylesheet" href="../assets/css/articleCoreElems.css">
+        <link rel="stylesheet" href="../assets/css/toc.css">
+        <link rel="stylesheet" href="../assets/css/iframeStyle.css">
+        
+        <!-- To adjust iFrame height automatically -->
+        <script>
+            function resizeIframe(obj) {
+                obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+            }
+
+            function addSelectIndicator(obj) {
+                console.log(obj.innerHTML);
+                obj.innerHTML = "<strong>" + obj.innerHTML + "</strong>"
+                console.log(obj.innerHTML);
+                iframeElement = document.getElementById('articlePlaceholder');
+                console.log(iframeElement)
+                console.log(obj.id)
+                iframeElement.src = obj.id;
+                console.log(iframeElement.src)
+            }
+
+            function resetAll() {
+                elements = document.querySelectorAll('.tocEntry');
+
+                elements.forEach((element, key) => {
+                    element.innerHTML = element.innerText;
+                })
+            }
+
+            addSelectIndicator(document.getElementById("./gbnsr.html"));
+
+        </script>          
+    </head>
+    <body>
+
+<div id="main">
+    <h2 style="text-align: left; margin-left: 6%">Networks Projects</h2>
+    <div id="tableofcontents">
+        <span class="tocEntry" id="./gbnsr.html" onclick="resetAll(); addSelectIndicator(this)">Go-Back-N AR and Selective Repeat</span><br/><hr/>
+        <span class="tocEntry" id="./slotAlohaCRC.html" onclick="resetAll(); addSelectIndicator(this)">Slotted Aloha with Cyclic Redundancy Check</span><br/><hr/>
+        <span class="tocEntry" id="./FTP.html" onclick="resetAll(); addSelectIndicator(this)">File Transfer Protocol</span><br/><hr/>
+        <!-- <span class="tocEntry" id="./DNS_ICMP.html" onclick="resetAll(); addSelectIndicator(this)">Domain Name System (DNS) and ICMP</span><br/><hr/> -->
+        <span class="tocEntry" id="./OSPF_RIP.html" onclick="resetAll(); addSelectIndicator(this)">OSPF and RIP experiments in GNS3</span><br/><hr/>
+        <span class="tocEntry" id="./MininetEmul.html" onclick="resetAll(); addSelectIndicator(this)">Mininet-1: Bandwidth and delays in a mininet emulation</span><br/><hr/>
+        <span class="tocEntry" id="./BGPHijack.html" onclick="resetAll(); addSelectIndicator(this)">Mininet-2: BGP Hijacking Attacks</span><br/><hr/>
+        <!-- <span class="tocEntry" id="./CongestionControl.html" onclick="resetAll(); addSelectIndicator(this)">Mininet-3: Congestion Control and Buffer Bloat</span><br/><hr/> -->
+        <span class="tocEntry" id="./measureEarth.html" onclick="resetAll(); addSelectIndicator(this)">Measuring Earth with Traceroute</span><br/><hr/>
+    </div>
+    <iframe id="articlePlaceholder" src="./gbnsr.html" scrolling="no" onload="resizeIframe(this)"></iframe>
+    </body>
+
+    <script>
+        resetAll();
+        addSelectIndicator(document.getElementById("./gbnsr.html"));
+    </script>  
+</div>
+    
+</html>

@@ -1,0 +1,42 @@
+<head>
+    <link rel="stylesheet" href="../assets/css/articleIndex.css">
+    <link rel="stylesheet" href="../assets/css/articleCoreElems.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<article>
+    <h1>Measuring the diameter of earth using Traceroute</h1>
+  
+    <p>Check out the original paper here <a href="https://arxiv.org/pdf/physics/0208087.pdf" target="_blank"><i class="fa fa-file" style="font-size:24px"></i></a></p>
+
+    <p>
+        I came across a popular post on <a href="https://news.ycombinator.com/item?id=30696499" target="_blank">Hacker News</a> on estimating the size of earth by observing the RTT times using Traceroute command. I found the construction of such an experiment to be a tricky yet an interesting one. So I conducted some experiments myself.  
+    </p>
+
+    <p>
+        First, let us examine the organization of submarines cables across the world. <a href="https://www.submarinecablemap.com/" target="_blank">Source</a>
+    </p>
+    <p style="text-align:center;"><img src="./measureEarthImg.png" alt="submarine_cables"></p>
+
+    <p>
+        Since I currently reside in Atlanta, it is unfortunate to see that there are no direct cables from the nearest costal city to anywhere in Europe of Africa. However, I realized that this is a non-issue as soon as I ran my traceroute command to <i>University of London</i> at <a href="www.london.ac.uk" target="_blank">www.london.ac.uk</a>.
+    </p>
+    <p style="text-align:center;"><img src="./Traceroute_output.png" alt="submarine_cables"></p>
+<p>It is clear from the terminal output that the traffic is routed from one of the coastal cities from which you can calculate the RTT difference to the nearest coastal city to the destination. So the actual location where the experiment is performed doesn't really matter.</p>
+    <p>
+        From here, as the paper argues, since it is a known fact that the electromagnetic signals travel at two-thirds the speed of light in optical fibres that connects NY to London, it is easy to arrive at a rough first estimate for the distance between these cities. 
+    </p>
+
+<pre>
+NY - London: 73.5/2 ms * 2/3 * 3e8 m/s  ~ 147/2 * 100 km = 7,350 km
+</pre>
+<p>
+Next, we need the information about how big earth's radius is relative to this distance. For this, we use a globe of size 15.3 cm, and using a thread, we find that its close to 17 cm. This way, we measure the radius of earth to be:
+</p>
+<pre>
+Radius of Earth = 15.3/17 * 7350 = 6615 km
+</pre>
+<p>
+This is really close to the actual radius of earth (which is 6378). However, as evident in all the measurements here and in the paper, we always tend to over-estimate the size of earth because the difference in RTT also includes processing and queuing delays which add a positive random error in each of these measurements. In fact, correcting for a processing delay of 1.5 ms at each of these routers brings this number 6350km which is within the range of actual radius + 0.5% error. A more accurate estimate can be obtained by estimating the averaged processing and queueing delays by running traceroute multiple times to both estimate these delays and also get the averaged distance estimate which is less prone to random errors. 
+</p>
+</article>
